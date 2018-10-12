@@ -511,7 +511,11 @@ height:70px;
     display: inline-block !important;
     width:45%;
 }
-.cat-filter{
+.salessearchinput{
+    width:40%;
+    display: inline-block !important;
+}
+.filter{
 width:28% !important;
 display: inline-block !important;
 }
