@@ -49,6 +49,46 @@ document.getElementById("cart-total-price").textContent=finalTotal;
 };
 
  })();
+(function(){
+    const view_product_btn=document.querySelectorAll('.view_product_btn');
+    view_product_btn.forEach(function(btn){
+        btn.addEventListener("click",function(evt){
+            
+            if(evt.currentTarget.className='view_product_btn'){
+                let viewdetails = document.getElementById('view-myproduct-details');
+                viewdetails.style.display = "block";
+                const item={};
+                let name=evt.currentTarget.parentNode.parentNode.parentNode.children[1].textContent;
+                
+                let price=evt.currentTarget.parentNode.parentNode.parentNode.children[4].textContent;
+                let id=evt.currentTarget.parentNode.parentNode.parentNode.children[0].textContent;
+                let cat=evt.currentTarget.parentNode.parentNode.parentNode.children[2].textContent;
+                let desc=evt.currentTarget.parentNode.parentNode.parentNode.children[3].textContent;
+                let finalprice= parseFloat(price.replace(/,/g, '').trim());
+                item.name=name;
+                item.price=finalprice;
+                item.id=id;
+                item.cat=cat;
+                item.desc=desc;
+                const detailsform=document.getElementById("view-product-content");
+                detailsform.innerHTML='<div class="product-details-left">'+
+                            '<h3>'+item.name+'</h3>'+
+                            '<p><span>Product ID :</span><span>'+item.id+'</span></p>'+
+                            '<p><span>Category :</span><span>'+item.cat+'</span></p>'+
+                            '<p><span>Price :</span><span>'+item.price+'</span></p>'+
+                            '<p><span>Quantity available :</span><span>30</span></p>'+
+                            '<p><span>Low inventory limit:</span><span>10</span></p>'+
+                            '<p><span>Description :</span><span>'+item.desc+'</span></p>'+
+                            
+                    '</div>'+
+                    '<img class="image-holder" src="images/imageholder.png"/></div>'; 
+            }
+    });
+});
+})();
+
+
+
 
 //  switching tabs
 
@@ -75,4 +115,18 @@ function open_attendant_content(evt, attendant_content) {
 }
 // Get the element with id="default_dash_content" and click on it
 document.getElementById("default_attendant_content").click();
+
+// view product details
+var view_details = document.getElementById('view-myproduct-details');
+var close1=document.getElementsByClassName("close")[0];
+close1.onclick= function() {
+    view_details.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == view_details) {
+        view_details.style.display = "none";
+    }
+   
+}
 
