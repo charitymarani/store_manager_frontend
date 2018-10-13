@@ -95,11 +95,6 @@ add_user_btn.onclick = function() {
     adduserform.style.display = "block";
 }
 
-
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    addproductform.style.display = "none";
    
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
