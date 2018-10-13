@@ -49,7 +49,7 @@ document.getElementById("cart-total-price").textContent=finalTotal;
 };
 
  })();
- (function(){
+(function(){
     const view_product_btn=document.querySelectorAll('.view_product_btn');
     view_product_btn.forEach(function(btn){
         btn.addEventListener("click",function(evt){
@@ -86,6 +86,7 @@ document.getElementById("cart-total-price").textContent=finalTotal;
     });
 });
 })();
+
 
 
 
@@ -128,3 +129,4 @@ window.onclick = function(event) {
     }
    
 }
+

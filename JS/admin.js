@@ -1,3 +1,4 @@
+
 // view product details
 (function(){
     const view_product_btn=document.querySelectorAll('.view_product_btn');
@@ -36,6 +37,7 @@
     });
 });
 })();
+
 //switch between side bar list
 function open_admin_content(evt, admin_content) {
     // Declare all variables
@@ -63,10 +65,10 @@ document.getElementById("default_dash_content").click();
 //Open pop up form
 
 var addproductform = document.getElementById('addproductform');
+
 var addcategoryform = document.getElementById('addcategoryform');
 var adduserform = document.getElementById('adduserform');
 var view_details = document.getElementById('view-product-details');
-
 
 // Get the button that opens the modal
 var add_product_btn = document.getElementById("add-product-btn");
@@ -81,10 +83,10 @@ var close1=document.getElementsByClassName("close")[1];
 var close2=document.getElementsByClassName("close")[2];
 var close3=document.getElementsByClassName("close")[3];
 
+
 // When the user clicks the button, open the modal 
 add_product_btn.onclick = function() {
     addproductform.style.display = "block";
-    
 }
 add_category_btn.onclick = function() {
     addcategoryform.style.display = "block";
@@ -94,10 +96,15 @@ add_user_btn.onclick = function() {
 }
 
 
+
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     addproductform.style.display = "none";
    
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    addproductform.style.display = "none";
+
 }
 close2.onclick= function() {
     addcategoryform.style.display = "none";
@@ -109,6 +116,7 @@ close3.onclick= function() {
 close1.onclick= function() {
     view_details.style.display = "none";
 }
+
 
 
 // When the user clicks anywhere outside of the modal, close it
@@ -127,6 +135,4 @@ window.onclick = function(event) {
     }
    
 }
-
-
 

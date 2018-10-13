@@ -515,6 +515,7 @@ display: inline-block !important;
     box-sizing: border-box;
     
 }
+
 .view-product-content{
     padding:20px;
     box-sizing: border-box;
@@ -565,6 +566,7 @@ display: inline-block !important;
     float:left;
     width:50%;
 }
+
 .the_bottom_div{
     width: 100%;
     height:auto;
@@ -576,6 +578,11 @@ td, th {
     padding: 10px;
     border: 1px solid #ddd;
 }
+
+.actions_header{
+    width: 240px !important;
+}
+
 
 .tr_a {
     background-color: #fff;
@@ -606,15 +613,18 @@ td, th {
 .view_product_btn:hover,.view_product_btn:focus{
     box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
 }
+
 .product-search{
     float:left;
     width:70%;
     }
 
 .action_div{
+
     padding:10px; 
     background-color: #fff !important;
    display: block !important;
+
     border-collapse: collapse;
     /* padding: 10px; */
     border-radius: 4px;
@@ -697,10 +707,12 @@ text-align: center;
     background-color: #9cb3c9;
     text-align: center;
     }
+
     .t_income_image{
         background-color:#4CAF50;;
         text-align: center;
         }
+
     .t_img{
         margin-top:15px;
         }
@@ -922,7 +934,9 @@ background-color: #34495e;
 text-align: center;
 }
 .t_income_image{
-background-color:#4CAF50;;
+
+background-color:#4CAF50;
+
 text-align: center;
 }
 .t_img{
@@ -1084,6 +1098,7 @@ td, th {
 }
 table{
     border-collapse: collapse;
+
     
 }
 
@@ -1092,6 +1107,8 @@ table{
 }
     
     
+
+
 
 .product-search{
 float:left;
@@ -1104,6 +1121,7 @@ float:right;
 .action_div{
     padding:10px;
     background-color: #fff !important;
+
    display: block !important;
     border-collapse: collapse;
     /* padding: 10px; */
@@ -1160,7 +1178,6 @@ float:right;
     font-size: 18px;
     
 }
-
 .close:hover,
 .close:focus {
     color: #ddd;
@@ -1330,4 +1347,6 @@ label {
     /* color: #e6ecf0 ; */
     margin-bottom: 8px;
     touch-action: manipulation;
+
 }
+
