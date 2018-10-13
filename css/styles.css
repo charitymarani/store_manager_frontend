@@ -526,6 +526,9 @@ td, th {
     padding: 10px;
     border: 1px solid #ddd;
 }
+.actions_header{
+    width: 240px !important;
+}
 
 .tr_a {
     background-color: #fff;
@@ -629,10 +632,6 @@ text-align: center;
     background-color: #9cb3c9;
     text-align: center;
     }
-    .t_income_image{
-        background-color:#4CAF50;;
-        text-align: center;
-        }
     .t_img{
         margin-top:15px;
         }
@@ -854,7 +853,7 @@ background-color: #34495e;
 text-align: center;
 }
 .t_income_image{
-background-color:#4CAF50;;
+background-color:#4CAF50;
 text-align: center;
 }
 .t_img{
