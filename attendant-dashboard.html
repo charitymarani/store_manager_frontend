@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin home</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+</head>
+
+<body>
+    <div class="header">
+
+        <img src="images/nav_logo.png" alt="logo" />
+
+        <h1>Store Manager</h1>
+        <div class="nav-btn">
+            <a href="login.html" class="logout">
+                <img class="logout" src="images/logout.png" />
+            </a>
+            <a href="profile.html" class="user_name">
+                <p class="user_name">Attendant Charity</p>
+            </a>
+            <a href="profile.html" class="avatar">
+                <img class="avatar" src="images/avatar.png" />
+
+            </a>
+
+
+
+        </div>
+
+    </div>
+    <!-- content -->
+    <div class="content">
+        <div class="side_nav ">
+            <ul>
+                <li id="default_attendant_content" class="dash_list" onclick="open_attendant_content(event, 'attendant-dashboard')">New Sale</li>
+                <li  class="dash_list" onclick="open_attendant_content(event, 'my-inventory')">Inventory</li>
+                <li class="dash_list" onclick="open_attendant_content(event, 'my-products')">Products</li>
+                <li class="dash_list"onclick="open_attendant_content(event, 'my-categories')">Categories</li>
+                <li class="dash_list"onclick="open_attendant_content(event, 'my-sales-report')">My sales report</li>
+                <li class="dash_list"onclick="open_attendant_content(event, 'user-accounts')">Profile</li>
+            </ul>
+        </div>
+       <div id=" attendant-dashbord" class="col-10 attendant-dashcontent">
+            
+           <div class=" cart">
+                <div class="search-cart">
+                        <form class="product-search">
+                                <input class="add-product-input searchinput" type="text" placeholder="Search products">
+                                <button class="btn">Search</button>
+                            </form>
+                   </div>
+               
+                <div class="cart-info">
+                    <table>
+                        <tr class="tr_cart">
+                            <th class="cart-header">Remove</th>
+                                <th class="cart-header">Product</th>
+                                <th class="cart-header" >Price</th>
+                                <th class="cart-header">Quantity</th>
+                                <th class="cart-header">Total</th>
+                        </tr>
+                       
+                    </table>
+            
+                    <div class="cart-item">
+                            <div class="cart-item-item"><img class="cross-item product-name-item" src="images/cross.png"></div>
+                            <div class="cart-item-item product-name">
+                                    <!-- <img class="cross-item product-name-item" src="images/cross.png"> -->
+                                    <p class="p-name">LV belt</p>
+                                </div>
+                            
+                                <div class="product-price cart-item-item ">5000</div>
+                                <div class="product-quantity cart-item-item ">
+                                    <div class="quantity-item quantity-minus signs"><img class="sign-image" src="images/minus.png"></div>
+                                    <div class="quantity-item quantity-value"><p class="p-quantity-value">1</p></div>
+                                    <div class="quantity-item quantity-add signs"><img  class="sign-image" src="images/plus.png"></div>
+                                </div>
+                                <div class="product-total cart-item-item ">5000</div>
+                    </div>
+                    <div class="cart-item">
+                        <div class="cart-item-item"><img class="cross-item product-name-item" src="images/cross.png"></div>
+                            <div class="cart-item-item product-name">
+                                    <p class="p-name">LV belt</p>
+                                </div>
+                            
+                                <div class="product-price cart-item-item ">5000</div>
+                                <div class="product-quantity cart-item-item ">
+                                    <div class="quantity-item quantity-minus signs"><img class="sign-image" src="images/minus.png"></div>
+                                    <div class="quantity-item quantity-value"><p class="p-quantity-value">1</p></div>
+                                    <div class="quantity-item quantity-add signs"><img  class="sign-image" src="images/plus.png"></div>
+                                </div>
+                                <div class="product-total cart-item-item ">5000</div>
+                    </div>
+                    <div class="cart-item">
+                            <div class="cart-item-item"><img class="cross-item product-name-item" src="images/cross.png"></div>
+                            <div class="cart-item-item product-name">
+                                    <!-- <img class="cross-item product-name-item" src="images/cross.png"> -->
+                                    <p class="p-name">LV belt</p>
+                                </div>
+                            
+                                <div class="product-price cart-item-item ">5000</div>
+                                <div class="product-quantity cart-item-item ">
+                                    <div class="quantity-item quantity-minus signs"><img class="sign-image" src="images/minus.png"></div>
+                                    <div class="quantity-item quantity-value"><p class="p-quantity-value">1</p></div>
+                                    <div class="quantity-item quantity-add signs"><img  class="sign-image" src="images/plus.png"></div>
+                                </div>
+                                <div class="product-total cart-item-item ">5000</div>
+                    </div>
+                
+            </div>
+            <div class="cart-totals">
+                <table >
+                    <tr class="td-cart-totals">
+                        <td class="td-cart-totals cart-total-hd">Total items :</td>
+                        <td class="td-cart-totals "><span class="cart-total-data">3</span></td>
+                    </tr>
+                    <tr class="td-cart-totals">
+                        <td class="td-cart-totals cart-total-hd">Total cost :</td>
+                        <td class="td-cart-totals "><span class="cart-total-data">20,000</span></td>
+                    </tr >
+                </table>
+                
+            </div>
+            <div>
+                    <button class="cart-buttons cancel">Cancel</button>
+                    <button class="cart-buttons checkout">Checkout</button>
+                </div>
+           </div>
+           <div class=" product-display">
+               <div id="product-search-div">
+                    <form class="product-search">
+                        <label >Category : </label>
+                        <select class="add-product-input attendant-cat-filter">
+                              <option>Heels</option>
+                              <option>Fruits</option>
+                              <option>soft drinks</option>
+                              <option>human hair</option>
+                          </select>
+                                
+                            
+                        
+                                    <input class=" add-product-input searchinput" type="text" placeholder="Search products">
+                                    <button class="btn">Search</button>
+                                </form>
+               </div>
+               <div class="add-to-cart-instructions">Click on an item to add to the cart!</div>
+                
+                    <div id="product-list">
+                        <div class="product-row">
+                            <div class="product-column">
+                                <div class="product-image"><img class="img-image" src="images/5in1_bags.jpg"/></div>
+                                <div class="product-caption">
+                                    <span class="image-text">
+                                        5in1 bag
+                                    </span>
+                                    <span class="image-price">3,500</span>
+                                </div>
+                            </div>
+                            
+                            <div class="product-column">
+                                    <div class="product-image"><img class="img-image" src="images/gucci_belt.jpg"/></div>
+                                    <div class="product-caption">
+                                            <span class="image-text">
+                                                    gucci belt
+                                                </span>
+                                                <span class="image-price">2,000</span>
+                                    </div>
+                            </div>
+                            <div class="product-column">
+                                    <div class="product-image"><img class="img-image" src="images/hand_bag.jpg"/></div>
+                                    <div class="product-caption">
+                                            <span class="image-text">
+                                                    hand bag
+                                                </span>
+                                                <span class="image-price">1,500</span>
+                                    </div>
+                            </div>
+                        </div>
+                        <div  class="product-row">
+                                <div class="product-column">
+                                        <div class="product-image"><img class="img-image" src="images/leather_bag.jpg"/></div>
+                                        <div class="product-caption">
+                                                <span class="image-text">
+                                                        leather bag
+                                                    </span>
+                                                    <span class="image-price">5,000</span>
+                                        </div>
+                                </div>
+                               
+                                <div class="product-column">
+                                        <div class="product-image"><img class="img-image" src="images/peep_toe.jpg"></div>
+                                        <div class="product-caption">
+                                                <span class="image-text">
+                                                        peep toe
+                                                    </span>
+                                                    <span class="image-price">4,000</span>
+                                        </div>
+                                </div>
+                                <div class="product-column">
+                                        <div class="product-image"><img class="img-image" src="images/peep_toe_boot.jpg"></div>
+                                        <div class="product-caption">
+                                                <span class="image-text">
+                                                        boot
+                                                    </span>
+                                                    <span class="image-price">4,000</span>
+                                        </div>
+                                </div>
+                        </div>
+                        <div  class="product-row">
+                                <div class="product-column">
+                                        <div class="product-image"><img class="img-image" src="images/strap_heels.jpg"></div>
+                                        <div class="product-caption">
+                                                <span class="image-text">
+                                                        strap heels
+                                                    </span>
+                                                    <span class="image-price">3500</span>
+                                        </div>
+                                </div>
+                                <div class="product-column">
+                                        <div class="product-image"><img class="img-image" src="images//travel_bag.jpg"></div>
+                                        <div class="product-caption">
+                                                <span class="image-text">
+                                                        travel bag
+                                                    </span>
+                                                    <span class="image-price">6,000</span>
+                                        </div>
+                                </div>
+                                <div class="product-column">
+                                        <div class="product-image"><img class="img-image" src="images/casual_leather_belt.jpg"/></div>
+                                        <div class="product-caption">
+                                                <span class="image-text">
+                                                        casual belt
+                                                    </span>
+                                                    <span class="image-price">800</span>
+                                        </div>
+                                </div>
+                                
+
+                        </div>
+                    </div>
+           </div>
+
+       </div>
+
+    </div>
+    <script src="JS/admin.js"></script>
+</body>
+
+</html>
