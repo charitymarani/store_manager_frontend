@@ -272,18 +272,16 @@
                         </div>
                      
                       <div class="add-form-content">
-                            <form class="productform">
-                                    <label>ProductID</label>
-                                    <input type="text" class="add-product-input" id="add-product-id" name="productid" placeholder="ProductId" required>
+                            <form class="productform" id="productform">
+                                    <div id="product-alert"></div>
                                     <label>Name</label>
                                     <input type="text" class="add-product-input" id="add-product-name" name="productname" placeholder="Product name" required>
                                     <label>Category</label>
-                                   <select class="add-product-input" placeholder="Category">
-                                       <!-- <option>Category</option> -->
-                                       <option>Heels</option>
-                                       <option>Soft drinks</option>
-                                       <option>Human hair</option>
-                                       <option>Fruits</option>
+                                   <select class="add-product-input" id="select-product-category" placeholder="Category">
+                                      
+                                       <option>Dresses</option>
+                                       <option>Belts</option>
+                                       <option>Shoes</option>
                                        <option>Bags</option>
           
                                    </select>
@@ -298,12 +296,12 @@
                                     <label>Description</label>
                                     <textarea type="text" class="add-product-input" id="add-product-description" name="productdescription" placeholder="Add description" ></textarea>
                                     <label>Upload photo</label>
-                                              <br/>
-                                              <input type="file" class="upload-photo"name="userphoto">
+                                              
+                                              <input type="text" class="add-product-input" id="add-product-image" name="userphoto" placeholder="Insert image link">
                                 </form>
                                 <div>
-                                    <button class="btn btn-cancel">close</button>
-                                    <button class="btn btn-save">Save</button>
+                                    <button id="addproduct-cancel"class="btn btn-cancel">close</button>
+                                    <button id="addproduct-submit"class="btn btn-save">Save</button>
                                 </div>
                       </div>
                       
@@ -663,8 +661,7 @@
                                               <label>Confirm Password</label>
                                               <input type="text" class="add-product-input" id="confirm-user-password" name="confirmpassword" placeholder="Confirm password" required>
                                               <label>Upload photo</label>
-                                              <br/>
-                                              <input type="file" class="upload-photo"name="userphoto">
+                                              <input type="text" class="add-product-input" id="upload-user-photo" name="userphoto" placeholder="Insert image link">
                                             </form>
                                           <div>
                                               <button id="register-cancel"class="btn btn-cancel">close</button>

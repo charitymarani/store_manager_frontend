@@ -1349,7 +1349,7 @@ label {
     /* font-weight: bold; */
     color: red;
 }
-#register-alert{
+#register-alert,#product-alert{
     display: none;
 }
 .green-alert{
