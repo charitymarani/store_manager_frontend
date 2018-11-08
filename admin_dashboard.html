@@ -643,14 +643,13 @@
                                
                                 <!-- <p>Some text in the Modal..</p> -->
                                 <div class="add-form-content">
-                                      <form class="productform">
+                                      <form class="productform" id="registerform">
+                                              <div id="register-alert"></div>
                                               <label>Username</label>
                                               <input type="text" class="add-product-input" id="add-user-name" name="username" placeholder="Enter username" required>
-                                              <label>Firstname</label>
-                                              <input type="text" class="add-product-input" id="add-first-name" name="firstname" placeholder="Enter firstname" required>
-                                              <label>Lastname</label>
-                                              <input type="text" class="add-product-input" id="add-last-name" name="lastname" placeholder="Enter lastname" required>
-                                              <label>role</label>
+                                              <label>Name</label>
+                                              <input type="text" class="add-product-input" id="add-name" name="name" placeholder="Enter official name" required>
+                                              <label>Role</label>
                                               <select  class="add-product-input" id="select-role" name="userrole" placeholder="Select role" required>
                                                   <option>
                                                       Admin
@@ -668,8 +667,8 @@
                                               <input type="file" class="upload-photo"name="userphoto">
                                             </form>
                                           <div>
-                                              <button class="btn btn-cancel">close</button>
-                                              <button class="btn btn-save">Save</button>
+                                              <button id="register-cancel"class="btn btn-cancel">close</button>
+                                              <button type="submit" id="register-submit"class="btn btn-save">Save</button>
                                           </div>
                                 </div>
                                 
