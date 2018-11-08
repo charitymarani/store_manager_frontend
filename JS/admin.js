@@ -1,4 +1,3 @@
-
 // view product details
 (function(){
     const view_product_btn=document.querySelectorAll('.view_product_btn');
@@ -130,4 +129,68 @@ window.onclick = function(event) {
     }
    
 }
+// Signup
+const el = id => document.getElementById(id)
+const getEl = id => el(id).value;
+const showAlert = message => setTimeout(function() { alert(message); }, 30);
+const reload = () => window.location.reload();
+const url = "https://store-manager-herokuapp.herokuapp.com/api/v2/register";
+let status = '';
+let register = el('adduserform');
+let save=el('register-submit');
+let cancel=el('register-cancel');
+register.addEventListener('click',registerfunc);
+cancel.addEventListener('click',cancelfunc);
 
+function cancelfunc(e) {
+    e.preventDefault();
+    register.style.display = "none";
+}
+
+function registerfunc(e) {
+    e.preventDefault();
+
+    let name = getEl('add-name');
+    let username = getEl('add-user-name');
+    let email = getEl('add-user-email');
+    let password = getEl('add-user-password');
+    let role=getEl('select-role')
+    let confirmPassword = getEl('confirm-user-password');
+    let token=localStorage.getItem('token');
+    let myData = {
+      name: name, 
+      username: username, 
+      email: email,
+      role:role, 
+      password: password, 
+      confirm_password: confirmPassword }
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Authorization":'Bearer ' + token
+      },
+      body: JSON.stringify(myData)
+    })
+      .then((response) => {
+        status = response.status
+        return response.json()
+      })
+      .then((data) => {
+        if (data.status =='success') {
+            divAlert = el('register-alert');
+            divAlert.style.display = "block";
+            divAlert.innerHTML = data.message;
+            divAlert.className='green-alert';
+            reload()
+        }
+        else {
+          divAlert = el('register-alert');
+          divAlert.style.display = "block";
+          divAlert.innerHTML = data.message;
+          divAlert.className='red-alert';
+
+        }
+      })
+      .catch(error => console.log(error));
+  }

@@ -12,12 +12,12 @@
                 const cartItem=document.createElement('tr');
                 cartItem.classList.add("cart-item");
                 cartItem.innerHTML='<td><div class="cart-item-item"><img class="cross-item product-name-item" src="images/cross.png"/></div></td>'+ 
-                '<td><div class="cart-item-item product-name">'+
-                     '<p class="p-name">'+item.name+'</p>'+
+                '<td><div class="cart-item-item product-name p-name">'+
+                     item.name+
                   '</div></td>'+
                 '<td><div class="product-price cart-item-item ">'+item.price+'</div></td>'+
                     '<td><div class="product-quantity cart-item-item ">'+
-                                      '<input class="item-quantity" type ="number" name="quantity" placeholder="1"/>'+
+                                      '<input class="item-quantity" type ="text" name="quantity" min="1" value="1"/>'+
                                    '</div></td>'+
                                    '<td><div class="product-total cart-item-item ">5000</div></td>';
           

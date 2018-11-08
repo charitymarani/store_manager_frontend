@@ -14,34 +14,31 @@
         <div class="login_card col-5">
             <div class="content_login_card card ">
                 <div>
-                    <div class=class="login_logo">
+                    <div class="login_logo">
                         <img src="images/storelogo.png" />
                         
                     </div>
 
                     <h1 class="content__title text-center">Login to Your Account</h1>
                 </div>
-                <form class="content__form">
-
+                <form action="" method="POST" class="content__form" id="login-form">
+                    <div id="login-alert"></div>
                     <div class="input-group content__input-group--padding-right">
-                        <label for="login_email" class="text-slate"> Username</label>
-                        <input class="input content__login-input" type="text" id="login_username" name="login_username" />
+                        <label for="login_name" class="text-slate"> Username</label>
+                        <input class="input content__login-input" type="text" id="login_username" name="login_username" required />
                     </div>
 
                     <div class="input-group content__input-group--padding-right">
                         <label for="login_password" class="text-slate">Password</label>
-                        <input class="input content__login-input" type="password" id="login_password" name="login_password" />
+                        <input class="input content__login-input" type="password" id="login_password" name="login_password" required/>
                     </div>
 
                     <div class="content__login-submit">
-                        <a href="admin_dashboard.html" class=" btn btn-login">
-                            Login as Admin
+                        <button type="submit" class=" btn btn-login">
+                            Login
 
-                        </a>
-                        <a href="attendant-dashboard.html" class=" btn btn-login">
-                            Login as Attendant
-
-                        </a>
+                        </button>
+                       
                     </div>
                 </form>
                 <br/>
@@ -51,6 +48,7 @@
             </div>
         </div>
     </div>
+    <script src="JS/login.js"></script>
 </body>
 
 </html>
