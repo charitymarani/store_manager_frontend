@@ -132,14 +132,12 @@ window.onclick = function(event) {
 // Signup
 const el = id => document.getElementById(id)
 const getEl = id => el(id).value;
-const showAlert = message => setTimeout(function() { alert(message); }, 30);
-const reload = () => window.location.reload();
 const url = "https://store-manager-herokuapp.herokuapp.com/api/v2/register";
 let status = '';
 let register = el('adduserform');
 let save=el('register-submit');
 let cancel=el('register-cancel');
-register.addEventListener('click',registerfunc);
+save.addEventListener('click',registerfunc);
 cancel.addEventListener('click',cancelfunc);
 
 function cancelfunc(e) {
@@ -156,6 +154,7 @@ function registerfunc(e) {
     let password = getEl('add-user-password');
     let role=getEl('select-role')
     let confirmPassword = getEl('confirm-user-password');
+    let pic=getEl('upload-user-photo');
     let token=localStorage.getItem('token');
     let myData = {
       name: name, 
@@ -163,7 +162,9 @@ function registerfunc(e) {
       email: email,
       role:role, 
       password: password, 
-      confirm_password: confirmPassword }
+      confirm_password: confirmPassword,
+      pic:pic
+     }
     fetch(url, {
       method: 'POST',
       headers: {
@@ -179,15 +180,82 @@ function registerfunc(e) {
       .then((data) => {
         if (data.status =='success') {
             divAlert = el('register-alert');
+            form=el('registerform');
             divAlert.style.display = "block";
-            divAlert.innerHTML = data.message;
+            divAlert.innerHTML =data.message;
             divAlert.className='green-alert';
-            reload()
+            form.reset();
         }
         else {
           divAlert = el('register-alert');
           divAlert.style.display = "block";
-          divAlert.innerHTML = data.message;
+          divAlert.innerHTML =data.message;
+          divAlert.className='red-alert';
+
+        }
+      })
+      .catch(error => console.log(error));
+  }
+//Add new product
+const producturl="https://store-manager-herokuapp.herokuapp.com/api/v2/products";
+let productform = el('addproductform');
+let product_save=el('addproduct-submit');
+let product_cancel=el('addproduct-cancel');
+product_save.addEventListener('click',addproductfunc);
+product_cancel.addEventListener('click',productcancelfunc);
+
+function productcancelfunc(e) {
+    e.preventDefault();
+    productform.style.display = "none";
+}
+
+function addproductfunc(e) {
+    e.preventDefault();
+
+    let name = getEl('add-product-name');
+    let category = getEl('select-product-category');
+    let b_price = getEl('add-purchase-price');
+    let s_price = getEl('add-product-price');
+    let qty=getEl('add-product-quantity')
+    let limit= getEl('add-low-inventory');
+    let pic=getEl('add-product-image');
+    let desc=getEl('add-product-description')
+    let token=localStorage.getItem('token');
+    let myData = {
+      name: name, 
+      purchase_price:Number(b_price), 
+      selling_price: Number(s_price),
+      quantity:Number(qty), 
+      category: category, 
+      low_limit:Number(limit),
+      description:desc,
+      pic:pic
+     }
+    fetch(producturl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Authorization":'Bearer ' + token
+      },
+      body: JSON.stringify(myData)
+    })
+      .then((response) => {
+        status = response.status
+        return response.json()
+      })
+      .then((data) => {
+        if (data.status =='success') {
+            divAlert = el('product-alert');
+            form=el('productform')
+            divAlert.style.display = "block";
+            divAlert.innerHTML =data.message;
+            divAlert.className='green-alert';
+            form.reset();
+        }
+        else {
+          divAlert = el('product-alert');
+          divAlert.style.display = "block";
+          divAlert.innerHTML =data.message;
           divAlert.className='red-alert';
 
         }
