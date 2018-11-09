@@ -1,54 +1,4 @@
-(function(){
-    const add_cart_btn=document.querySelectorAll('.add-cart-btn');
-    add_cart_btn.forEach(function(btn){
-        btn.addEventListener("click",function(event){
-            if(event.currentTarget.className='add-cart-btn'){
-                const item={};
-                let name=event.currentTarget.parentNode.firstElementChild.firstElementChild.textContent;
-                let price=event.currentTarget.parentNode.firstElementChild.lastElementChild.textContent;
-                let finalprice= parseFloat(price.replace(/,/g, '').trim());
-                item.name=name;
-                item.price=finalprice;
-                const cartItem=document.createElement('tr');
-                cartItem.classList.add("cart-item");
-                cartItem.innerHTML='<td><div class="cart-item-item"><img class="cross-item product-name-item" src="images/cross.png"/></div></td>'+ 
-                '<td><div class="cart-item-item product-name p-name">'+
-                     item.name+
-                  '</div></td>'+
-                '<td><div class="product-price cart-item-item ">'+item.price+'</div></td>'+
-                    '<td><div class="product-quantity cart-item-item ">'+
-                                      '<input class="item-quantity" type ="text" name="quantity" min="1" value="1"/>'+
-                                   '</div></td>'+
-                                   '<td><div class="product-total cart-item-item ">5000</div></td>';
-          
-                
-            const cart =document.getElementById("attendant-cart-table") ;
-            cart.appendChild(cartItem); 
-           
-            showTotals();  
-            
-            }
-    });
-});
-function showTotals(){
-    const totals=[];
-    const items=document.querySelectorAll('.product-price');
-    
-    items.forEach(function(item){
-totals.push(parseFloat(item.textContent));
-const totalMoney=totals.reduce(function(totals,item){
- totals+= item;
- 
- return totals;
-},0);
-const finalTotal=totalMoney.toFixed(2);
-document.getElementById("cart-total-items").textContent=totals.length;
-document.getElementById("cart-total-price").textContent=finalTotal;
-});
 
-};
-
- })();
 (function(){
     const view_product_btn=document.querySelectorAll('.view_product_btn');
     view_product_btn.forEach(function(btn){
@@ -129,4 +79,57 @@ window.onclick = function(event) {
     }
    
 }
+//View all products
+let productdiv = document.getElementById('product-list');
+let productsUrl = 'https://store-manager-herokuapp.herokuapp.com/api/v2/products';
+let token = window.localStorage.getItem('token');
+fetch(productsUrl, {
+    method: 'GET',
+    headers: {
+         'Access-Control-Request-Headers': '*',
+        'Authorization': 'Bearer '+ token
+    }
+})
+  .then((res) => res.json())
+  .then((data) => {
+    if (data.status === 'failed'){
+        // if product list is empty
+        divAlert=document.getElementById('product-list-msg');
+        divAlert.style.display = "block";
+        divAlert.innerHTML =data.message;
+        divAlert.className='water-mark';
+    
+    }
+    else{
+        // if request is successful
+        let products = data; // Get the results
+        return products.map(function(product) { // Map through the results and for each run the code below
+            productdiv.innerHTML += `
+            <div class="product-column">
+            <div class="product-image"><img class="img-image" src="${product.pic}"/></div>
+            <div class="product-caption">
+                <div class="product-caption-left">
+                        <span class="image-text">
+                                ${product.name}
+                        </span>
+                        <br/>
 
+                        <span class="image-price">${product.selling_price}</span>
+                </div>
+
+                
+                
+                <img class="add-cart-btn" src="images/addcart.png">
+               
+            </div>
+        </div>
+                `;
+        })
+        
+    }
+
+}).catch((error) => {
+    console.log(error);
+  });
+
+  
