@@ -147,22 +147,18 @@ html,body{
 /**end of side nav**/
 /*columns*/
 .col-2, .col-4, .col-6, .col-8, .col-10, .col-12 {
-    /* height: 100%; */
+    
     height: auto;
     float: left;    
-    /* padding-left: 10px;
-    padding-right: 10px; */
     position: relative;
 
 }
 
 .cart{
-/* background-color: #fff; */
 float:left;
 margin-right: 3px;
 width: 44%;
 padding: 8px;
-
 height:100%;
 box-sizing: border-box;
 }
@@ -252,12 +248,11 @@ background-color:#e9ebee !important;
 }
 .cart-item td,th{
     width:85px;
+    padding:5px !important;
     border: none !important;
-   
 }
 
 .cart-item-item{ 
-    padding:8px;
     margin-right: 3px;
     box-sizing: border-box;
     
@@ -477,11 +472,6 @@ transition: border .15s;
     width: 100%;
     
 }
-td,th {
-   
-    text-align: left;
-    
-}
 
 .cat-filter{
 width:28% !important;
@@ -651,6 +641,7 @@ td, th {
 .dash_row{
     width:100%;
     display: block;
+    text-align: center;
     
 }
 .t_attendant_data{
@@ -879,11 +870,11 @@ text-align: center;
     display: inline-block;
     background-color: #fff;
     border: 1px solid transparent;
-    width:22.5%;
+    width:30%;
     height: 100px;
-    margin: 5px;
+    margin: 20px;
     border-radius: 5px;
-    margin-bottom: 15px !important;
+    margin-bottom: 20px !important;
     border-width: 0;
     color: #333;
     padding: 5px;
@@ -1063,12 +1054,6 @@ margin-top:15px;
     width: 100%;
     height:auto;
     /* background-color:#fff; */
-}
-td, th {
-    /* border: 1px solid #e9ebee; */
-    text-align: left;
-    padding: 10px;
-    border: 1px solid #ddd;
 }
 
 .tr_a {
@@ -1334,7 +1319,7 @@ label {
     /* font-weight: bold; */
     color: red;
 }
-#register-alert,#product-alert,#product-list-msg{
+#register-alert,#product-alert,#product-list-msg,#cart-alert{
     display: none;
 }
 .green-alert{
@@ -1342,8 +1327,23 @@ label {
 }
 .water-mark{   
 color:#bbb;
-font-size:20px;
-position:absolute;
+font-size:18px;
+font-style: italic;
 text-align: center;
-z-index: -1;
 }
+#cart-total-items:empty::before {
+    color: grey;
+  }
+  #cart-total-items[data-placeholder]:not([data-placeholder=""]):empty::before {
+    content: attr(data-placeholder);
+  }
+  #cart-total-price:empty::before {
+    color: grey;
+  }
+  #cart-total-price[data-placeholder]:not([data-placeholder=""]):empty::before {
+    content: attr(data-placeholder);
+  }
+  .att-sale-item:nth-child(even) {
+    background-color:#fff;
+}
+
