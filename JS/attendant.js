@@ -79,7 +79,53 @@ window.onclick = function(event) {
     }
    
 }
+//Add to cart
+const showAlert = message => setTimeout(function () { alert(message); }, 300);
+function saveproduct(pname){
+    sessionStorage.setItem('cart_item', pname);
+    let cart_item=sessionStorage.getItem("cart_item");
+    let quantity=1;
+    let cartUrl = 'https://store-manager-herokuapp.herokuapp.com/api/v2/carts';
+    let token = window.localStorage.getItem('token');
+    fetch(cartUrl, {
+        method: 'POST',
+        headers: {
+            'content-type':'application/json',
+            'Authorization': 'Bearer '+ token
+        },
+        body:JSON.stringify({"quantity":Number(quantity),"cart_item":cart_item})
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            if (data.status === 'success'){
+                // if request is usuccessful
+                location.reload(true);
+                divAlert=document.getElementById('product-list-msg');
+                divAlert.style.display = "block";
+                divAlert.innerHTML =data.message;
+                divAlert.className='green-alert';
+            }
+            else if (data.status==='success!'){
+                location.reload(true);
+                divAlert=document.getElementById('product-list-msg');
+                divAlert.style.display = "block";
+                divAlert.innerHTML =data.message;
+                divAlert.className='green-alert';
+                
+                
+            }
+            else{
+                // if request is unsuccessful
+                divAlert=document.getElementById('product-list-msg');
+                divAlert.style.display = "block";
+                divAlert.innerHTML =data.message;
+                divAlert.className='red-alert';
+            }
+    
+        })
+}
 //View all products
+
 let productdiv = document.getElementById('product-list');
 let productsUrl = 'https://store-manager-herokuapp.herokuapp.com/api/v2/products';
 let token = window.localStorage.getItem('token');
@@ -116,14 +162,11 @@ fetch(productsUrl, {
 
                         <span class="image-price">${product.selling_price}</span>
                 </div>
-
+                <img onClick="saveproduct('${product.name}');" class="add-cart-btn" src="images/addcart.png">
                 
-                
-                <img class="add-cart-btn" src="images/addcart.png">
-               
             </div>
-        </div>
-                `;
+        </div>`;
+       
         })
         
     }
@@ -131,5 +174,262 @@ fetch(productsUrl, {
 }).catch((error) => {
     console.log(error);
   });
+//Delete single item on cart
+function deleteCartItem(cart_id){
+    let token = window.localStorage.getItem('token');
+    let Url = `https://store-manager-herokuapp.herokuapp.com/api/v2/carts/${cart_id}`;
+    fetch(Url, {
+        method: 'DELETE',
+        headers: {
+            'Access-Control-Request-Headers': '*',
+            'Authorization': 'Bearer '+ token
+        }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        if (data.status === 'success'){
+            // if request is successful
+            location.reload(true);
+            divAlert=document.getElementById('cart-alert');
+            divAlert.style.display = "block";
+            divAlert.innerHTML =data.message;
+            divAlert.className='green-alert';
+        }
+        else{
+            divAlert=document.getElementById('cart-alert');
+            divAlert.style.display = "block";
+            divAlert.innerHTML =data.message;
+            divAlert.className='red-alert';
 
+        }
+    }).catch((error) => {
+        console.log(error);
+      });
+
+}
+//Delete entire cart
+let delCart=document.getElementById("cart-cancel");
+delCart.addEventListener('click',deleteCart);
+function deleteCart(e){
+    e.preventDefault();
+    const res = confirm("Are you sure you want to delete the entire cart?");
+    if (res === true){
+        
+        let token=localStorage.getItem("token");
+        let url=`https://store-manager-herokuapp.herokuapp.com/api/v2/carts`;
+        fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer '+ token
+            }
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            if (data.status === 'success'){
+                // if request is successful
+                location.reload(true);
+                divAlert=document.getElementById('cart-alert');
+                divAlert.style.display = "block";
+                divAlert.innerHTML =data.message;
+                divAlert.className='green-alert';
+            }
+            else{
+                divAlert=document.getElementById('cart-alert');
+                divAlert.style.display = "block";
+                divAlert.innerHTML =data.message;
+                divAlert.className='red-alert';
+
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
+}
+}
+//Function to edit cart quantity
+function editCartItem(cart_id){
+    if (event.keyCode === 13){
+    let quantity=event.currentTarget.value
+    let token = window.localStorage.getItem('token');
+    let Url = `https://store-manager-herokuapp.herokuapp.com/api/v2/carts/${cart_id}`;
+    let myData = {
+        quantity:Number(quantity)
+    }
+    fetch(Url, {
+        method: 'PUT',
+        headers: {
+            'content-type':'application/json',
+            'Authorization': 'Bearer '+ token
+        },
+        body: JSON.stringify(myData)
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        if (data.status === 'success'){
+            // if request is successful
+            location.reload(true);
+            divAlert=document.getElementById('cart-alert');
+            divAlert.style.display = "block";
+            divAlert.innerHTML =data.message;
+            divAlert.className='green-alert';
+        }
+        else{
+            divAlert=document.getElementById('cart-alert');
+            divAlert.style.display = "block";
+            divAlert.innerHTML =data.message;
+            divAlert.className='red-alert';
+
+        }
+    }).catch((error) => {
+        console.log(error);
+      });
+    }
+}
+//View all cart
+function viewCart(){
+    let cartdiv= document.getElementById('cart-body');
+    let token = window.localStorage.getItem('token');
+    let cartUrl = `https://store-manager-herokuapp.herokuapp.com/api/v2/carts`;
+    fetch(cartUrl, {
+        method: 'GET',
+        headers: {
+            'Access-Control-Request-Headers': '*',
+            'Authorization': 'Bearer '+ token
+        }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        if (data.status === 'failed' ){
+            // if cart is empty
+            cartdiv.innerHTML=`<tr><td class="water-mark">There are no items in the cart, click on the green cart icon on the product to add an item to the cart!</td></tr>`;
+            
+        }
+        else{
+            // if request is successful
+            cartdiv.classList.remove("water-mark");
+            let cartitems = data; // Get the results
+            return cartitems.map(function(cartitem) { // Map through the results and for each run the code below
+            cartdiv.innerHTML += `
+            <tr class="cart-item">
+            <td><div class="cart-item-item"><img onClick=deleteCartItem(${cartitem.cart_item_id}) class="cross-item product-name-item" src="images/cross.png"></div></td> 
+    <td><div class="cart-item-item product-name-item p-name">
+        ${cartitem.cart_item}
+    </div></td>
+            
+                <td><div class="product-price cart-item-item ">${cartitem.cost}</div></td>
+                <td><div class="product-quantity cart-item-item ">
+                        <input class="item-quantity" onkeyup="editCartItem(${cartitem.cart_item_id})"type ="text" name="quantity" value=${cartitem.count}>
+                    </div></td>
+
+                <td><div class="product-total cart-item-item ">${cartitem.price}</div></td>
+                <tr>
+    `;
+            showTotals();
+            })
+        }
+
+    }).catch((error) => {
+        console.log(error);
+    });
+}
+function showTotals(){
+    const totalprice=[];
+    const totalitems=[];
+    const itemsprice=document.querySelectorAll('.product-total');
+    const itemscount=document.querySelectorAll('.item-quantity');
+    
+    itemsprice.forEach(function(item){
+
+        totalprice.push(parseFloat(item.textContent));
+        const totalMoney=totalprice.reduce(function(totalprice,item){
+
+            totalprice+= item;
+        
+            return totalprice;
+    },0);
+    const finalTotal=totalMoney.toFixed(2);
+    document.getElementById("cart-total-price").textContent=finalTotal;
+});
+    itemscount.forEach(function(itm){
+        totalitems.push(parseFloat(itm.value));
+        const totalqty=totalitems.reduce(function(totalitems,itm){
+            totalitems+= itm;
+            
+            return totalitems;
+    },0);
+    document.getElementById("cart-total-items").textContent=totalqty;
+    
+});
+};
+let checkout=document.getElementById("cart-checkout");
+checkout.addEventListener('click',checkoutfunc);
+
+function checkoutfunc(e) {
+    e.preventDefault();
+    let token=localStorage.getItem('token');
+    let url=`https://store-manager-herokuapp.herokuapp.com/api/v2/sales`;
+    fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          "Authorization":'Bearer ' + token
+        }
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status =='success') {
+            divAlert = document.getElementById('cart-alert');
+            divAlert.style.display = "block";
+            divAlert.innerHTML =data.message;
+            divAlert.className='green-alert';
+            location.reload(true);
+            
+          }
+          else {
+            divAlert = document.getElementById('cart-alert');
+            divAlert.style.display = "block";
+            divAlert.innerHTML =data.message;
+            divAlert.className='red-alert';
   
+          }
+        })
+        .catch(error => console.log(error));
+    }
+function getmySales(){
+    let mysalesdiv=document.getElementById('attendant-rep');
+    let token = window.localStorage.getItem('token');
+    let Url = `https://store-manager-herokuapp.herokuapp.com/api/v2/mysales`;
+    fetch(Url, {
+        method: 'GET',
+        headers: {
+            'Access-Control-Request-Headers': '*',
+            'Authorization': 'Bearer '+ token
+        }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        if (data.status === 'failed' ){
+            // if sales report is empty
+            mysalesdiv.innerHTML=`<tr><td colspan="6" class="water-mark">${data.message}</td></tr>`;
+            
+        }
+        else{
+            // if request is successful
+            let sales = data; // Get the results
+            return sales.map(function(sale) { // Map through the results and for each run the code below
+            mysalesdiv.innerHTML +=`<tr class="att-sale-item attendant-report-row">
+            <td>${sale.sale_id}</td>
+            <td>${sale.date_created}</td>
+            <td>${sale.items_count}</td>
+            <td>${sale.item}</td>
+            <td>${sale.created_by}</td>
+            <td>${sale.price}</td>
+        </tr>`;
+    })
+}
+}).catch((error) => {
+    console.log(error);
+});
+}
+
+viewCart();
+getmySales();

@@ -37,7 +37,6 @@
         <div class="side_nav ">
             <ul>
                 <li id="default_attendant_content" class="dash_list" onclick="open_attendant_content(event, 'attendant-dashboard')">New Sale</li>
-                <li  class="dash_list" onclick="open_attendant_content(event, 'my-inventory')">Inventory</li>
                 <li class="dash_list" onclick="open_attendant_content(event, 'my-products')">Products</li>
                 <li class="dash_list"onclick="open_attendant_content(event, 'my-categories')">Categories</li>
                 <li class="dash_list"onclick="open_attendant_content(event, 'my-user-accounts')">Profile</li>
@@ -45,8 +44,8 @@
         </div>
        <div id="attendant-dashboard" class="col-10 attendant-dashcontent">
             
-           <div class=" cart">
-               
+           <div class="cart">
+               <div id="cart-alert"></div>
                 <div class="cart-info">
                     <table id="attendant-cart-table">
                         <thead><tr class="cart-item">
@@ -57,13 +56,10 @@
                            
                            <th class="cart-item-item">Quantity</th>
                            <th class="cart-item-item">Total</th>
-                            
-                            
-                       
                        </tr> </thead>
-                                
-                        
-                  <tbody>
+                                    
+                  <tbody id="cart-body">
+                     
                       
                   </tbody>
                 
@@ -74,18 +70,18 @@
                 <table >
                     <tr class="td-cart-totals">
                         <td class="td-cart-totals cart-total-hd">Total items :</td>
-                        <td class="td-cart-totals "><span id="cart-total-items" class="cart-total-data">1</span></td>
+                        <td class="td-cart-totals "><span id="cart-total-items" class="cart-total-data" data-placeholder='0'></span></td>
                     </tr>
                     <tr class="td-cart-totals">
                         <td class="td-cart-totals cart-total-hd">Total cost :</td>
-                        <td class="td-cart-totals "><span id="cart-total-price" class="cart-total-data">5000</span></td>
+                        <td class="td-cart-totals "><span id="cart-total-price" class="cart-total-data" data-placeholder='0.00'></span></td>
                     </tr >
                 </table>
                 
             </div>
             <div>
-                    <button class="cart-buttons cancel">Cancel</button>
-                    <button class="cart-buttons checkout">Checkout</button>
+                    <button id="cart-cancel" class="cart-buttons cancel">Cancel</button>
+                    <button id="cart-checkout" class="cart-buttons checkout">Checkout</button>
                 </div>
            </div>
            <div class=" product-display">
@@ -116,69 +112,6 @@
                     </div>
            </div>
 
-       </div>
-       <div id="my-inventory" class="attendant-dashcontent col-10">
-            <div class="the_top_div">
-                    <form class="product-search">
-                        <label >Category : </label>
-                        <select class="add-product-input filter">
-                              <option>Heels</option>
-                              <option>Belts</option>
-                              <option>Bags</option>
-                              <option>shoes</option>
-                          </select>
-                          <input class="add-product-input salessearchinput" type="text" placeholder="Search products">
-                          <button class="btn">Search</button>
-                      </form>
-                  </div>
-                  <div class="the_bottom_div">
-                    <table>
-                        <tr class="tr_a">
-                            <th>Item ID</th>
-                            <th>Date</th>
-                            <th>Item Name</th>
-                            <th>category</th>
-                            <th>QTY available</th>
-                            <th>Low limit</th>
-                            
-                           
-                        </tr>
-                        <tr class="tr_b">
-                            <td>110</td>
-                            <td>12-10-2018-02:36 am</td>
-                            <td>LV bag</td>
-                            <td>Bags</td>
-                            <td>90</td>
-                            <td>15</td>
-                            
-                        </tr>
-                        <tr class="tr_a">
-                            <td>110</td>
-                            <td>12-10-2018-02:36 am</td>
-                            <td>LV bag</td>
-                            <td>Bags</td>
-                            <td>90</td>
-                            <td>15</td>
-                        </tr>
-                        <tr class="tr_b">
-                            <td>110</td>
-                            <td>12-10-2018-02:36 am</td>
-                            <td>LV bag</td>
-                            <td>Bags</td>
-                            <td>90</td>
-                            <td>15</td>
-                        </tr>
-                        <tr class="tr_a">
-        
-                            <td>110</td>
-                            <td>12-10-2018-02:36 am</td>
-                            <td>LV bag</td>
-                            <td>Bags</td>
-                            <td>90</td>
-                            <td>15</td>
-                        </tr>
-                    </table>
-                </div>
        </div>
        <div id="my-products" class="attendant-dashcontent col-10">
             <div class="the_top_div">
@@ -391,48 +324,22 @@
          <h4 class="add-to-cart-instructions">My Sales Report</h4>
            <div class="attendant-sales-report" >
                 <table>
-                    <tr class="tr_a attendant-report-row">
-                        <th>Sale ID</th>
-                        <th>Date</th>
-                        <th>Items bought</th>
-                        <th>created by</th>
-                        <th>Total</th>
-                        <th>Profit</th>
-                       
-                    </tr>
-                    <tr class="tr_b attendant-report-row">
-                        <td>110</td>
-                        <td>12/10/18</td>
-                        <td>Heels</td>
-                        <td>Joy</td>
-                        <td>1800</td>
-                        <td>300</td>
-                    </tr>
-                    <tr class="tr_a attendant-report-row">
-                            
-                            <td>110</td>
-                            <td>12/10/18</td>
-                            <td>Heels</td>
-                            <td>Joy</td>
-                            <td>1800</td>
-                            <td>300</td>
-                    </tr>
-                    <tr class="tr_b attendant-report-row">
-                        <td>110</td>
-                        <td>12/10/18</td>
-                        <td>Heels</td>
-                        <td>Joy</td>
-                        <td>1800</td>
-                        <td>300</td>
-                    </tr>
-                    <tr class="tr_a attendant-report-row">
-                        <td>110</td>
-                        <td>12/10/18</td>
-                        <td>Heels</td>
-                        <td>Joy</td>
-                        <td>1800</td>
-                        <td>300</td>
-                    </tr>
+                    <thead>
+                            <tr class="tr_a attendant-report-row">
+                                    <th>Sale ID</th>
+                                    <th>Date</th>
+                                    <th>Item count</th> 
+                                    <th>Item</th>
+                                    <th>created by</th>
+                                    <th>Total</th>
+                                    
+                                   
+                                </tr>
+                    </thead>
+                    <tbody id="attendant-rep">
+                                      
+                    </tbody>
+                    
                 </table>
             </div>
        </div>

@@ -262,3 +262,41 @@ function addproductfunc(e) {
       })
       .catch(error => console.log(error));
   }
+//Get all sales records
+function getSales(){
+let salesdiv=document.getElementById('admin-sale-rep');
+    let token = window.localStorage.getItem('token');
+    let Url = `https://store-manager-herokuapp.herokuapp.com/api/v2/sales`;
+    fetch(Url, {
+        method: 'GET',
+        headers: {
+            'Access-Control-Request-Headers': '*',
+            'Authorization': 'Bearer '+ token
+        }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        if (data.status === 'failed' ){
+            // if sales report is empty
+            salesdiv.innerHTML=`<tr><td colspan="6" class="water-mark">${data.message}</td></tr>`;
+            
+        }
+        else{
+            // if request is successful
+            let sales = data; // Get the results
+            return sales.map(function(sale) { // Map through the results and for each run the code below
+            salesdiv.innerHTML +=`<tr class="att-sale-item attendant-report-row">
+            <td>${sale.sale_id}</td>
+            <td>${sale.date_created}</td>
+            <td>${sale.items_count}</td>
+            <td>${sale.item}</td>
+            <td>${sale.created_by}</td>
+            <td>${sale.price}</td>
+        </tr>`;
+    })
+}
+}).catch((error) => {
+    console.log(error);
+});
+}
+getSales();
