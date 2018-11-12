@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    
 </head>
 
 <body>
@@ -16,13 +15,13 @@
 
         <h1>Store Manager</h1>
         <div class="nav-btn">
-            <a href="login.html" class="logout">
-                <img class="logout" src="images/logout.png" />
+            <a href="#" class="logout">
+                <img onclick="logOut();" class="logout" src="images/logout.png" />
             </a>
-            <a href="profile.html" class="user_name">
-                <p class="user_name">Admin Charity</p>
+            <a href="#" class="user_name">
+                <p id="admin_user_name" class="user_name"></p>
             </a>
-            <a href="profile.html" class="avatar">
+            <a href="#" class="avatar">
                 <img class="avatar" src="images/avatar.png" />
 
             </a>
@@ -37,11 +36,9 @@
         <div class="side_nav ">
             <ul>
                 <li id="default_dash_content" class="dash_list" onclick="open_admin_content(event, 'dashboard')">Dashboard</li>
-                <li class="dash_list" onclick="open_admin_content(event, 'inventory')">Inventory</li>
                 <li class="dash_list" onclick="open_admin_content(event, 'products')">Products</li>
                 <li class="dash_list"onclick="open_admin_content(event, 'categories')">Categories</li>
                 <li class="dash_list"onclick="open_admin_content(event, 'sales-report')">Sales Report</li>
-                <li class="dash_list"onclick="open_admin_content(event, 'products-sold-report')">Products sold Report</li>
                 <li class="dash_list"onclick="open_admin_content(event, 'user-accounts')">User Accounts</li>
             </ul>
         </div>
@@ -51,7 +48,7 @@
                 <a>
                     <div class="t_data">
                         <div class="t_data_left t_sales_data">
-                            <h3 class="sales_value">200</h3>
+                            <span id="s_value"class="sales_value"></span>
                             <p>Total sales</p>
                         </div>
                         <div class="t_data_right t_sales_image">
@@ -62,7 +59,7 @@
                 <a>
                     <div class="t_data">
                         <div class="t_data_left t_income_data">
-                            <h3 class="income_value">Ksh 20,000</h3>
+                            <span id="i_value" class="income_value"></span>
                             <p>Total Income</p>
                         </div>
                         <div class="t_data_right t_income_image">
@@ -70,191 +67,52 @@
                         </div>
                     </div>
                 </a>
-                <a>
-                    <div class="t_data">
-                        <div class="t_data_left t_products_data">
-                            <h3 class="products_value">300</h3>
-                            <p>Total Products</p>
-                        </div>
-                        <div class="t_data_right t_product_image">
-                            <img class="t_img" src="images/product.png" />
-                        </div>
-                    </div>
-                </a>
-                <a>
-                    <div class="t_data">
-                        <div class="t_data_left t_categories_data">
-                            <h3 class="categories_value">20</h3>
-                            <p>Total Categories</p>
-                        </div>
-                        <div class="t_data_right t_categories_image">
-                            <img class="t_img" src="images/category.png" />
-                        </div>
-                    </div>
-                </a>
-
-
-
-
-
+                
             </div>
-
-            <p class="p_task">Choose a task below!</p>
-            <div class="admin_tasks">
-                <div class="admin_table_left">
-                    <div class="admin_table ">
-                        <div class="a_task">
-                            <tr>
-                                <td class="t_icon">
-                                    <img class="black_img" src="images/black_cart .png" />
-                                </td>
-                                <td class="t_task">
-                                    <span class="p">Make a new sale</span>
-                                </td>
-
-                            </tr>
+            <div class="dash_row">
+                    
+                    <a>
+                        <div class="t_data">
+                            <div class="t_data_left t_products_data">
+                                <span id="p_value" class="products_value"></span>
+                                <p>Total Products</p>
+                            </div>
+                            <div class="t_data_right t_product_image">
+                                <img class="t_img" src="images/product.png" />
+                            </div>
                         </div>
-                        <div class="a_task">
-                            <tr>
-                                <td class="t_icon">
-                                    <img class="black_img" src="images/black_product.png" />
-                                </td>
-                                <td class="t_task">Add a new product</td>
-                            </tr>
+                    </a>
+                    <a>
+                        <div class="t_data">
+                            <div class="t_data_left t_categories_data">
+                                <span class="categories_value">4</span>
+                                <p>Total Categories</p>
+                            </div>
+                            <div class="t_data_right t_categories_image">
+                                <img class="t_img" src="images/category.png" />
+                            </div>
                         </div>
-                        <div class="a_task">
-                            <tr>
-                                <td class="t_icon">
-                                    <img class="black_img" src="images/black_category.png" />
-                                </td>
-                                <td class="t_task">Add a new category</td>
-                            </tr>
-                        </div>
-                        <div class="a_task">
-                            <tr>
-                                <td class="t_icon">
-                                    <img class="black_img" src="images/avatar.png" />
-                                </td>
-                                <td class="t_task">Add a new user account</td>
-                            </tr>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="admin_table_right">
-                    <div class="admin_table ">
-                        <div class="a_task">
-                            <tr>
-                                <td class="t_icon">
-                                    <img class="black_img" src="images/graph.png" />
-                                </td>
-                                <td class="t_task">View sales records</td>
-                            </tr>
-                        </div>
-                        <div class="a_task">
-                            <tr>
-                                <td class="t_icon">
-                                    <img class="black_img" src="images/inventory.png" />
-                                </td>
-                                <td class="t_task">View the inventory</td>
-                            </tr>
-                        </div>
-                        <div class="a_task">
-                            <tr>
-                                <td class="t_icon">
-                                    <img class="black_img" src="images/lowlimit.png" />
-                                </td>
-                                <td class="t_task">View low in the inventory</td>
-                            </tr>
-                        </div>
-                        <div class="a_task">
-                            <tr>
-                                <td class="t_icon">
-                                    <img class="black_img" src="images/black_user.png" />
-                                </td>
-                                <td class="t_task">View all employees</td>
-                            </tr>
-                        </div>
-
-                    </div>
-                </div>
-
-
-            </div>
-
-        </div>
-        <div id="inventory"class="dash-content col-10">
-            <div class="the_top_div">
-                <form class="product-search">
-                    <label >Category : </label>
-                    <select class="add-product-input filter">
-                          <option>Heels</option>
-                          <option>Belts</option>
-                          <option>Bags</option>
-                          <option>shoes</option>
-                      </select>
-                      <input class="add-product-input salessearchinput" type="text" placeholder="Search products">
-                      <button class="btn">Search</button>
-                  </form>
-              </div>
-              <div class="the_bottom_div">
-                <table>
-                    <tr class="tr_a">
-                        <th>Item ID</th>
-                        <th>Date</th>
-                        <th>Item Name</th>
-                        <th>category</th>
-                        <th>QTY available</th>
-                        <th>Low limit</th>
-                        
-                       
-                    </tr>
-                    <tr class="tr_b">
-                        <td>110</td>
-                        <td>12-10-2018-02:36 am</td>
-                        <td>LV bag</td>
-                        <td>Bags</td>
-                        <td>90</td>
-                        <td>15</td>
-                        
-                    </tr>
-                    <tr class="tr_a">
-                        <td>110</td>
-                        <td>12-10-2018-02:36 am</td>
-                        <td>LV bag</td>
-                        <td>Bags</td>
-                        <td>90</td>
-                        <td>15</td>
-                    </tr>
-                    <tr class="tr_b">
-                        <td>110</td>
-                        <td>12-10-2018-02:36 am</td>
-                        <td>LV bag</td>
-                        <td>Bags</td>
-                        <td>90</td>
-                        <td>15</td>
-                    </tr>
-                    <tr class="tr_a">
+                    </a>
     
-                        <td>110</td>
-                        <td>12-10-2018-02:36 am</td>
-                        <td>LV bag</td>
-                        <td>Bags</td>
-                        <td>90</td>
-                        <td>15</td>
-                    </tr>
-                </table>
-            </div>
+    
+    
+    
+    
+                </div>
+    
+           
+
         </div>
         <div id="products"class=" dash-content col-10">
             <div class="the_top_div">
               <form class="product-search">
                   <label >Category : </label>
                   <select class="add-product-input cat-filter">
-                        <option>Heels</option>
-                        <option>Fruits</option>
-                        <option>soft drinks</option>
-                        <option>human hair</option>
+                        <option>All</option>
+                        <option>Belts</option>
+                        <option>Shoes</option>
+                        <option>Bags</option>
+                        <option>Dresses</option>
                     </select>
                     <input class="add-product-input searchinput" type="text" placeholder="Search products">
                     <button class="btn">Search</button>
@@ -272,18 +130,15 @@
                         </div>
                      
                       <div class="add-form-content">
-                            <form class="productform">
-                                    <label>ProductID</label>
-                                    <input type="text" class="add-product-input" id="add-product-id" name="productid" placeholder="ProductId" required>
-                                    <label>Name</label>
+                            <div id="product-alert"></div>
+                            <form class="productform" id="productform">
+                                     <label>Name</label>
                                     <input type="text" class="add-product-input" id="add-product-name" name="productname" placeholder="Product name" required>
                                     <label>Category</label>
-                                   <select class="add-product-input" placeholder="Category">
-                                       <!-- <option>Category</option> -->
-                                       <option>Heels</option>
-                                       <option>Soft drinks</option>
-                                       <option>Human hair</option>
-                                       <option>Fruits</option>
+                                   <select class="add-product-input" id="select-product-category" placeholder="Category">
+                                       <option>Dresses</option>
+                                       <option>Belts</option>
+                                       <option>Shoes</option>
                                        <option>Bags</option>
           
                                    </select>
@@ -298,12 +153,12 @@
                                     <label>Description</label>
                                     <textarea type="text" class="add-product-input" id="add-product-description" name="productdescription" placeholder="Add description" ></textarea>
                                     <label>Upload photo</label>
-                                              <br/>
-                                              <input type="file" class="upload-photo"name="userphoto">
+                                              
+                                              <input type="text" class="add-product-input" id="add-product-image" name="userphoto" placeholder="Insert image link">
                                 </form>
                                 <div>
-                                    <button class="btn btn-cancel">close</button>
-                                    <button class="btn btn-save">Save</button>
+                                    <button id="addproduct-cancel"class="btn btn-cancel">close</button>
+                                    <button id="addproduct-submit"class="btn btn-save">Save</button>
                                 </div>
                       </div>
                       
@@ -324,80 +179,22 @@
                   </div>
 
             <div class="the_bottom_div">
+                <div id="p_table_alert"></div>
                 <table>
-                    <tr class="tr_a">
-                        <th>Product ID</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Description</th>
-                        <th>Price(KSH)</th>
-                        <th class="actions_header">Actions</th>
-                    </tr>
-                    <tr class="tr_b">
-                        <td>110</td>
-                        <td>Chunky heels</td>
-                        <td>Heels</td>
-                        <td>Heels with a wide base</td>
-                        <td>1800</td>
-                        <td>
-                            <div class="action_div">
-                                <a class="action_item">delete</a>
-                                <a class="action_item">edit</a>
-
-                                <a class="view_product_btn action_item">view</a>
-
-                               
-
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="tr_a">
-                            <td>120</td>
-                            <td>mango</td>
-                            <td>fruits</td>
-
-                            <td>A tropical fruit</td>
-                            <td>10</td>
-                            <td><div class="action_div">
-                                    <a class="action_item" >delete</a>
-                                    <a class="action_item">edit</a>
-                                    <a class=" view_product_btn action_item">view</a>
-
+                    <thead>
+                            <tr class="tr_a">
+                                    <th>Product ID</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Description</th>
+                                    <th>Price(ksh)</th>
+                                    <th class="actions_header">Actions</th>
+                                </tr>
+                    </thead>
+                    <tbody id="products_body">
                            
-
-                            </div></td>
-                    </tr>
-                    <tr class="tr_b">
-                            <td>130</td>
-                            <td>black current</td>
-                            <td>Soft drinks</td>
-
-                            <td>a carbonated drink</td>
-                            <td>50</td>
-                            <td><div class="action_div">
-                                    <a class="action_item">delete</a>
-                                    <a class="action_item">edit</a>
-                                    <a class="view_product_btn action_item">view</a>
-
-                         
-                            </div></td>
-                    </tr>
-                    <tr class="tr_a">
-                            <td>140</td>
-                            <td>brazillian hair</td>
-                            <td>human hair</td>
-
-                            <td>100% human hair from brazil</td>
-                            <td>10,000</td>
-                            <td><div class="action_div">
-                                    <a class="action_item">delete</a>
-                                    <a class="action_item">edit</a>
-                                    <a class="view_product_btn action_item">view</a>
-
-                            
-
-                            </div></td>
-                    </tr>
+                    </tbody>
+                   
                 </table>
             </div>
 
@@ -495,11 +292,11 @@
             <div class="the_top_div">
                 <form class="product-search">
                     <label >Attendant : </label>
-                    <select class="add-product-input filter">
-                          <option>Ruth maro</option>
-                          <option>joy</option>
-                          <option>Gabriel innocent</option>
-                          <option>jaimie</option>
+                    <select id="sales_att_filter" class="add-product-input filter">
+                        <option>all</option>
+                        <option>chacha</option>
+                        <option>chacha2</option>
+                          
                       </select>
                       <input class="add-product-input salessearchinput" type="text" placeholder="Search sales">
                       <button class="btn">Search</button>
@@ -507,119 +304,22 @@
               </div>
               <div class="the_bottom_div">
                 <table>
-                    <tr class="tr_a">
-                        <th>Sale ID</th>
-                        <th>Date</th>
-                        <th>Items bought</th>
-                        <th>created by</th>
-                        <th>Total</th>
-                        <th>Profit</th>
-                       
-                    </tr>
-                    <tr class="tr_b">
-                        <td>110</td>
-                        <td>12-10-2018-02:57 am</td>
-                        <td>Heels</td>
-                        <td>Joy</td>
-                        <td>1800</td>
-                        <td>300</td>
-                    </tr>
-                    <tr class="tr_a">
-                            
-                            <td>110</td>
-                            <td>12-10-2018-02:57 am</td>
-                            <td>Heels</td>
-                            <td>Joy</td>
-                            <td>1800</td>
-                            <td>300</td>
-                    </tr>
-                    <tr class="tr_b">
-                        <td>110</td>
-                        <td>12-10-2018-02:57 am</td>
-                        <td>Heels</td>
-                        <td>Joy</td>
-                        <td>1800</td>
-                        <td>300</td>
-                    </tr>
-                    <tr class="tr_a">
-                        <td>110</td>
-                        <td>12-10-2018-02:57 am</td>
-                        <td>Heels</td>
-                        <td>Joy</td>
-                        <td>1800</td>
-                        <td>300</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div id="products-sold-report"class="dash-content col-10">
-            <div class="the_top_div">
-                <form class="product-search">
-                    <label >Category : </label>
-                    <select class="add-product-input filter">
-                          <option>Heels</option>
-                          <option>Belts</option>
-                          <option>Bags</option>
-                          <option>shoes</option>
-                      </select>
-                      <input class="add-product-input salessearchinput" type="text" placeholder="Search products">
-                      <button class="btn">Search</button>
-                  </form>
-              </div>
-              <div class="the_bottom_div">
-                <table>
-                    <tr class="tr_a">
-                        <th>Product ID</th>
-                        <th>Product Name</th>
-                        <th>category</th>
-                        <th>Buying price</th>
-                        <th>selling price</th>
-                        <th>QTY sold</th>
-                        <th>QTY available</th>
-                        <th>Total</th>
-                       
-                    </tr>
-                    <tr class="tr_b">
-                        <td>110</td>
-                        <td>5 in 1 bag</td>
-                        <td>Bags</td>
-                        <td>2500</td>
-                        <td>3500</td>
-                        <td>15</td>
-                        <td>46</td>
-                        <td>52,500</td>
-                    </tr>
-                    <tr class="tr_a">
-                            
-                        <td>110</td>
-                        <td>5 in 1 bag</td>
-                        <td>Bags</td>
-                        <td>2500</td>
-                        <td>3500</td>
-                        <td>15</td>
-                        <td>46</td>
-                        <td>52,500</td>
-                    </tr>
-                    <tr class="tr_b">
-                        <td>110</td>
-                        <td>5 in 1 bag</td>
-                        <td>Bags</td>
-                        <td>2500</td>
-                        <td>3500</td>
-                        <td>15</td>
-                        <td>46</td>
-                        <td>52,500</td>
-                    </tr>
-                    <tr class="tr_a">
-                        <td>110</td>
-                        <td>5 in 1 bag</td>
-                        <td>Bags</td>
-                        <td>2500</td>
-                        <td>3500</td>
-                        <td>15</td>
-                        <td>46</td>
-                        <td>52,500</td>
-                    </tr>
+                        <thead>
+                                <tr class="tr_a attendant-report-row">
+                                        <th>Sale ID</th>
+                                        <th>Date</th>
+                                        <th>Item count</th> 
+                                        <th>Item</th>
+                                        <th>created by</th>
+                                        <th>Total</th>
+                                        
+                                       
+                                    </tr>
+                        </thead>
+                        <tbody  id="admin-sale-rep">
+                                          
+                        </tbody>
+                        
                 </table>
             </div>
         </div>
@@ -643,14 +343,14 @@
                                
                                 <!-- <p>Some text in the Modal..</p> -->
                                 <div class="add-form-content">
-                                      <form class="productform">
+                                        <div id="register-alert"></div>
+                                      <form class="productform" id="registerform">
+                                             
                                               <label>Username</label>
                                               <input type="text" class="add-product-input" id="add-user-name" name="username" placeholder="Enter username" required>
-                                              <label>Firstname</label>
-                                              <input type="text" class="add-product-input" id="add-first-name" name="firstname" placeholder="Enter firstname" required>
-                                              <label>Lastname</label>
-                                              <input type="text" class="add-product-input" id="add-last-name" name="lastname" placeholder="Enter lastname" required>
-                                              <label>role</label>
+                                              <label>Name</label>
+                                              <input type="text" class="add-product-input" id="add-name" name="name" placeholder="Enter official name" required>
+                                              <label>Role</label>
                                               <select  class="add-product-input" id="select-role" name="userrole" placeholder="Select role" required>
                                                   <option>
                                                       Admin
@@ -664,12 +364,11 @@
                                               <label>Confirm Password</label>
                                               <input type="text" class="add-product-input" id="confirm-user-password" name="confirmpassword" placeholder="Confirm password" required>
                                               <label>Upload photo</label>
-                                              <br/>
-                                              <input type="file" class="upload-photo"name="userphoto">
+                                              <input type="text" class="add-product-input" id="upload-user-photo" name="userphoto" placeholder="Insert image link">
                                             </form>
                                           <div>
-                                              <button class="btn btn-cancel">close</button>
-                                              <button class="btn btn-save">Save</button>
+                                              <button id="register-cancel"class="btn btn-cancel">close</button>
+                                              <button type="submit" id="register-submit"class="btn btn-save">Save</button>
                                           </div>
                                 </div>
                                 
@@ -677,96 +376,31 @@
                             
                             </div>
                       <div class="the_bottom_div">
+                          <div id="user_alert"></div>
                           <table>
-                              <tr class="tr_a">
+                              <thead>
+                                    <tr class="tr_a">
                                   
-                                  <th>Photo</th>
-                                  <th>Username</th>
-                                  <th>Name</th>
-                                  <th>Email</th>
-                                  <th>Phone number</th>
-                                  <th>Role</th>
-                                  <th class="actions_header">Actions</th>
-
-                 
-                              </tr>
-                              <tr class="tr_b">
-                                   <td><img class="profile-avatar"src="images/avatar.png"></td>
-                                   <td>chacha</td>
-                                   <td>charity marani</td>
-                                   <td>chacha@gmail.com</td>
-                                  <td>0736793744</td>
-                                  <td>Admin</td>
-                                  <td>
-                                      <div class="action_div">
-                                          <a class="action_item">edit</a>
-
-                                          <a class="action_item">profile</a>
-
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr class="tr_a">
-                                    <td><img class="profile-avatar"src="images/avatar.png"></td>
-                                    <td>joey</td>
-                                    <td>joy marani</td>
+                                            <th>Photo</th>
+                                            <th>Username</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Actions</th>
+          
+                           
+                                        </tr>
+                              </thead>
+                              <tbody id="user_table">
                                     
-                                      <td>joey@yahoo.com</td>
-                                      <td>07155369</td>
-                                      <td>attendant</td>
-                                      <td><div class="action_div">
-                                              <a class="action_item" >delete</a>
-                                              <a class="action_item">edit</a>
-
-                                              <a class="action_item">profile</a>
-
-                                            
-
-                                             
-                                      </div></td>
-                              </tr>
-                              <tr class="tr_b">
-                                    <td><img class="profile-avatar"src="images/avatar.png"></td>
-                                    <td>Dero</td>
-                                    <td>Derrick prince</td>
-                                    <td>dero@gmail.com</td>
-                                      <td>0791235</td>
-                                      <td>attendant</td>
-                                      <td><div class="action_div">
-                                              <a class="action_item">delete</a>
-                                              <a class="action_item">edit</a>
-
-                                              <a class="action_item">profile</a>
-
-                                            
-
-                                              
-                                      </div></td>
-                              </tr>
-                              <tr class="tr_a">
-                                    <td><img class="profile-avatar"src="images/avatar.png"></td>
-                                    <td>Gebby</td>
-                                    <td>Innocent Gabriel</td>
-                                    <td>gabe@gmail.com</td>
-                                      <td>01236974</td>
-                                      <td>Admin/attendant</td>
-                                      <td><div class="action_div">
-                                              <a class="action_item">delete</a>
-                                              <a class="action_item">edit</a>
-
-                                              <a class="action_item">profile</a>
-
-                                              
-
-                                              
-                                      </div></td>
-                              </tr>
+                              </tbody>
                           </table>
                       </div>
           
         </div>
     </div>
     <script src="JS/admin.js"></script>
+    
 </body>
 
 </html>
