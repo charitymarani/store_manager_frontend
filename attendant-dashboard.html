@@ -143,71 +143,17 @@
 
                   <div class="the_bottom_div">
                         <table>
+                            <thead>
                             <tr class="tr_a">
-                                <th>Product ID</th>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Description</th>
-                                <th>Price(KSH)</th>
-                                <th>Actions</th>
-                            </tr>
-                            <tr class="tr_b">
-                                <td>110</td>
-                                <td>Chunky heels</td>
-                                <td>Heels</td>
-                                <td>Heels with a wide base</td>
-                                <td>1800</td>
-                                <td>
-                                    <div class="action_div">
-
-                                        <a class="view_product_btn action_item">view</a>
-
-                                      
-
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="tr_a">
-                                    <td>120</td>
-                                    <td>mango</td>
-                                    <td>fruits</td>
-
-                                    <td>A tropical fruit</td>
-                                    <td>10</td>
-                                    <td><div class="action_div">
-                                            
-                                            <a class="view_product_btn action_item">view</a>
-
-                                    
-                                    </div></td>
-                            </tr>
-                            <tr class="tr_b">
-                                    <td>130</td>
-                                    <td>black current</td>
-                                    <td>Soft drinks</td>
-
-                                    <td>a carbonated drink</td>
-                                    <td>50</td>
-                                    <td><div class="action_div">
-                                            
-                                            <a class=" view_product_btn action_item">view</a>
-
-                                   
-                                    </div></td>
-                            </tr>
-                            <tr class="tr_a">
-                                    <td>140</td>
-                                    <td>brazillian hair</td>
-                                    <td>human hair</td>
-
-                                    <td>100% human hair from brazil</td>
-                                    <td>10,000</td>
-                                    <td><div class="action_div">
-                                            
-                                            <a class="view_product_btn action_item">view</a>
-                             
-                                    </div></td>
-                            </tr>
+                                    <th>Product ID</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Description</th>
+                                    <th>Price(KSH)</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="myproducts-div"></tbody>
                         </table>
                     </div>
        </div>
@@ -274,14 +220,14 @@
        
        <div id="my-user-accounts" class="attendant-dashcontent col-10">
            <div class="myprofilediv">
-            <h3>@Nickie-Jones</h3>
+            <h3>@chacha</h3>
         <img src="images/image.jpg" class="profilepic">
         <div class="details">
-            Full name : Nicole Jones
+            Full name : charity marani
             <br/>
-             Email : jones@kibu.co.ke
+             Email : chacha@gmail.com
             <br/> 
-            Phone number: 345566
+            Role: Attendant
             <br/>
             <br/>
         </div>
@@ -290,7 +236,7 @@
                 
                         <div class="t_attendant_data">
                             <div class="t_data_left t_sales_data">
-                                <h3 class="sales_value">200</h3>
+                                <span id="att_svalue"class="sales_value">200</span>
                                 <p>My sales</p>
                             </div>
                             <div class="t_data_right t_sales_image">
@@ -299,8 +245,8 @@
                         </div>
                         <div class="t_attendant_data">
                                 <div class="t_data_left t_products_data">
-                                    <h3 class="products_value">300</h3>
-                                    <p>Products</p>
+                                    <span id="att_pvalue" class="products_value">300</span>
+                                    <p>Items</p>
                                 </div>
                                 <div class="t_data_right t_product_image">
                                     <img class="t_img" src="images/product.png" />
@@ -309,7 +255,7 @@
                     
                         <div class="t_attendant_data">
                             <div class="t_data_left t_income_data">
-                                <h3 class="income_value">20,000</h3>
+                                <span id="att_ivalue" class="income_value">20,000</span>
                                 <p>Total worth</p>
                             </div>
                             <div class="t_data_right t_income_image">

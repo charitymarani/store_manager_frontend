@@ -494,11 +494,12 @@ display: inline-block !important;
 .view-product-content{
     padding:20px;
     box-sizing: border-box;
-    height:300px;
+    height:350px;
 }
 .image-holder{
     float:right;
-    
+    height:240px;
+    width:240px;
     margin-right:20px;
 }
 #view-product-details{
@@ -666,7 +667,7 @@ td, th {
     text-align: left;
     padding:10px;
     font-style: none !important;
-    font-weight: 50px !important;
+    font-weight:bold !important;
 }
 .t_data_right{
     float:right;
@@ -1319,7 +1320,7 @@ label {
     /* font-weight: bold; */
     color: red;
 }
-#register-alert,#product-alert,#product-list-msg,#cart-alert{
+#register-alert,#product-alert,#product-list-msg,#cart-alert,#p_table_alert,#user_alert{
     display: none;
 }
 .green-alert{
@@ -1347,3 +1348,7 @@ text-align: center;
     background-color:#fff;
 }
 
+.p_detail{
+    font-weight: bold;
+    font-style: italic;
+}

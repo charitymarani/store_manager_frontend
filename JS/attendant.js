@@ -36,11 +36,35 @@
     });
 });
 })();
+//Show statistics
+function attendantStats(){
+    let income=[];
+    let items=[];
+    let sales=document.getElementById('attendant-rep').children.length;
+    document.getElementById('att_svalue').textContent=sales;
+    let sale_totals=document.querySelectorAll('.my_income');
+    let item_totals=document.querySelectorAll('.items_sold');
+    sale_totals.forEach(function(itm){
+        income.push(parseFloat(itm.textContent));
+        const totalincome=income.reduce(function(income,itm){
+            income+= itm;
+            
+            return income;
+    },0);
+    document.getElementById("att_ivalue").textContent='Ksh  ' + totalincome;
 
+    });
+    item_totals.forEach(function(item){
+        items.push(parseFloat(item.textContent));
+        const totalitems=items.reduce(function(items,item){
+            items+= item;
+            
+            return items;
+    },0);
+    document.getElementById("att_pvalue").textContent=totalitems;
 
-
-
-//  switching tabs
+    });
+}
 
 //switch between side bar list
 function open_attendant_content(evt, attendant_content) {
@@ -227,11 +251,10 @@ function deleteCart(e){
         .then((data) => {
             if (data.status === 'success'){
                 // if request is successful
-                location.reload(true);
-                divAlert=document.getElementById('cart-alert');
-                divAlert.style.display = "block";
-                divAlert.innerHTML =data.message;
-                divAlert.className='green-alert';
+                if(!alert(data.message)){
+                    location.reload(true);
+    
+                }  
             }
             else{
                 divAlert=document.getElementById('cart-alert');
@@ -266,11 +289,10 @@ function editCartItem(cart_id){
     .then((data) => {
         if (data.status === 'success'){
             // if request is successful
-            location.reload(true);
-            divAlert=document.getElementById('cart-alert');
-            divAlert.style.display = "block";
-            divAlert.innerHTML =data.message;
-            divAlert.className='green-alert';
+            if(!alert(data.message)){
+                location.reload(true);
+
+            }            
         }
         else{
             divAlert=document.getElementById('cart-alert');
@@ -377,11 +399,10 @@ function checkoutfunc(e) {
         .then((res) => res.json())
         .then((data) => {
           if (data.status =='success') {
-            divAlert = document.getElementById('cart-alert');
-            divAlert.style.display = "block";
-            divAlert.innerHTML =data.message;
-            divAlert.className='green-alert';
-            location.reload(true);
+            if(!alert(data.message)){
+                location.reload(true);
+
+            }  
             
           }
           else {
@@ -419,17 +440,81 @@ function getmySales(){
             mysalesdiv.innerHTML +=`<tr class="att-sale-item attendant-report-row">
             <td>${sale.sale_id}</td>
             <td>${sale.date_created}</td>
-            <td>${sale.items_count}</td>
+            <td class="items_sold">${sale.items_count}</td>
             <td>${sale.item}</td>
             <td>${sale.created_by}</td>
-            <td>${sale.price}</td>
+            <td class="my_income">${sale.price}</td>
         </tr>`;
+        attendantStats();
     })
 }
 }).catch((error) => {
     console.log(error);
 });
 }
+//Show products
+function fetchProducts(){
+    let productsdiv=document.getElementById('myproducts-div');
+    let token = window.localStorage.getItem('token');
+    let Url = `https://store-manager-herokuapp.herokuapp.com/api/v2/products`;
+    fetch(Url, {
+        method: 'GET',
+        headers: {
+            'Access-Control-Request-Headers': '*',
+            'Authorization': 'Bearer '+ token
+        }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        if (data.status === 'failed' ){
+            // if sales report is empty
+            productsdiv.innerHTML=`<tr><td colspan="6" class="water-mark">${data.message}</td></tr>`;
+            
+        }
+        else{
+            // if request is successful
+            let products = data; // Get the results
+            return products.map(function(product) { // Map through the results and for each run the code below
+            productsdiv.innerHTML +=` <tr class="att-sale-item">
+            <td>${product.product_code}</td>
+            <td>${product.name}</td>
+            <td>${product.category}</td>
+            <td>${product.description}</td>
+            <td>${product.selling_price}</td>
+            <td>
+                <div class="action_div">
+                <a onClick="myproductDetails('${product.name}',${product.selling_price},${product.product_code},'${product.category}','${product.description}',${product.quantity},${product.low_limit},${product.purchase_price},'${product.pic}');"class="view_product_btn action_item">view</a>
 
+                </div>
+            </td>
+        </tr>`;
+        
+    })
+}
+}).catch((error) => {
+    console.log(error);
+});
+    }
+//View product details
+function myproductDetails(name,price,id,cat,desc,qty,limit,b_price,img){
+    let viewdetails = document.getElementById('view-myproduct-details');
+    viewdetails.style.display = "block";
+    const detailsform=document.getElementById("view-product-content");
+    detailsform.innerHTML=`<div class="product-details-left">
+                <h3>${name}</h3>
+                <p><span>Product ID : </span> <span class="p_detail">${id}</span></p>
+                <p><span>Category : </span> <span class="p_detail">${cat}</span></p>
+                <p><span>Buying price : </span> <span class="p_detail">${b_price}</span></p>
+                <p><span >Selling price : </span> <span class="p_detail">${price}</span></p>
+                <p><span>Quantity available : </span> <span class="p_detail">${qty}</span></p>
+                <p><span>Low inventory limit: </span> <span class="p_detail">${limit}</span></p>
+                <p><span>Description : </span><span class="p_detail">${desc}</span></p>
+                
+        </div>
+        <img class="image-holder" src="${img}"/></div>`; 
+
+
+}
 viewCart();
 getmySales();
+fetchProducts();
