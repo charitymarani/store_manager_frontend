@@ -121,20 +121,28 @@ function saveproduct(pname){
         })
         .then((res) => res.json())
         .then((data) => {
-            if (data.status === 'success'){
-                // if request is usuccessful
-                location.reload(true);
+            refreshToken(data);
+            if (data.status ==='success'){
+                // if request is successful
                 divAlert=document.getElementById('product-list-msg');
                 divAlert.style.display = "block";
-                divAlert.innerHTML =data.message;
                 divAlert.className='green-alert';
+                divAlert.innerHTML =data.message;
+                setTimeout(function(){
+                    divAlert.style.display = "none";
+                    location.reload(true);
+                }, 3000);
             }
             else if (data.status==='success!'){
-                location.reload(true);
                 divAlert=document.getElementById('product-list-msg');
                 divAlert.style.display = "block";
                 divAlert.innerHTML =data.message;
                 divAlert.className='green-alert';
+                setTimeout(function(){
+                    divAlert.style.display = "none";
+                    location.reload(true);
+                }, 3000);
+                
                 
                 
             }
@@ -144,6 +152,9 @@ function saveproduct(pname){
                 divAlert.style.display = "block";
                 divAlert.innerHTML =data.message;
                 divAlert.className='red-alert';
+                setTimeout(function(){
+                    divAlert.style.display = "none";
+                }, 4000);
             }
     
         })
@@ -162,6 +173,7 @@ fetch(productsUrl, {
 })
   .then((res) => res.json())
   .then((data) => {
+    refreshToken(data);
     if (data.status === 'failed'){
         // if product list is empty
         divAlert=document.getElementById('product-list-msg');
@@ -211,19 +223,24 @@ function deleteCartItem(cart_id){
     })
     .then((res) => res.json())
     .then((data) => {
+        refreshToken(data);
         if (data.status === 'success'){
             // if request is successful
-            location.reload(true);
             divAlert=document.getElementById('cart-alert');
             divAlert.style.display = "block";
             divAlert.innerHTML =data.message;
             divAlert.className='green-alert';
+            setTimeout(function(){
+                divAlert.style.display = "none";
+                location.reload(true);
+            }, 3000);
         }
         else{
             divAlert=document.getElementById('cart-alert');
             divAlert.style.display = "block";
             divAlert.innerHTML =data.message;
             divAlert.className='red-alert';
+            
 
         }
     }).catch((error) => {
@@ -249,19 +266,24 @@ function deleteCart(e){
         })
         .then((res) => res.json())
         .then((data) => {
+            refreshToken(data);
             if (data.status === 'success'){
                 // if request is successful
-                if(!alert(data.message)){
+                divAlert=document.getElementById('cart-alert');
+                divAlert.style.display = "block";
+                divAlert.innerHTML =data.message;
+                divAlert.className='green-alert';
+                setTimeout(function(){
+                    divAlert.style.display = "none";
                     location.reload(true);
-    
-                }  
+                }, 3000); 
             }
             else{
                 divAlert=document.getElementById('cart-alert');
                 divAlert.style.display = "block";
                 divAlert.innerHTML =data.message;
                 divAlert.className='red-alert';
-
+                
             }
         }).catch((error) => {
             console.log(error);
@@ -287,18 +309,27 @@ function editCartItem(cart_id){
     })
     .then((res) => res.json())
     .then((data) => {
+        refreshToken(data);
         if (data.status === 'success'){
             // if request is successful
-            if(!alert(data.message)){
+            divAlert=document.getElementById('cart-alert');
+            divAlert.style.display = "block";
+            divAlert.innerHTML =data.message;
+            divAlert.className='green-alert';
+            setTimeout(function(){
+                divAlert.style.display = "none";
                 location.reload(true);
+            }, 3000);
+            
 
-            }            
+                     
         }
         else{
             divAlert=document.getElementById('cart-alert');
             divAlert.style.display = "block";
             divAlert.innerHTML =data.message;
             divAlert.className='red-alert';
+            
 
         }
     }).catch((error) => {
@@ -320,6 +351,7 @@ function viewCart(){
     })
     .then((res) => res.json())
     .then((data) => {
+        refreshToken(data);
         if (data.status === 'failed' ){
             // if cart is empty
             cartdiv.innerHTML=`<tr><td class="water-mark">There are no items in the cart, click on the green cart icon on the product to add an item to the cart!</td></tr>`;
@@ -398,20 +430,27 @@ function checkoutfunc(e) {
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.status =='success') {
-            if(!alert(data.message)){
-                location.reload(true);
-
-            }  
-            
-          }
-          else {
-            divAlert = document.getElementById('cart-alert');
-            divAlert.style.display = "block";
-            divAlert.innerHTML =data.message;
-            divAlert.className='red-alert';
-  
-          }
+            refreshToken(data);
+            if (data.status =='success') {
+                divAlert = document.getElementById('cart-alert');
+                divAlert.style.display = "block";
+                divAlert.innerHTML =data.message;
+                divAlert.className='green-alert';
+                setTimeout(function(){
+                    divAlert.style.display = "none";
+                    location.reload(true);
+                }, 3000);
+                
+                
+            }
+            else {
+                divAlert = document.getElementById('cart-alert');
+                divAlert.style.display = "block";
+                divAlert.innerHTML =data.message;
+                divAlert.className='red-alert';
+                
+    
+            }
         })
         .catch(error => console.log(error));
     }
@@ -428,6 +467,7 @@ function getmySales(){
     })
     .then((res) => res.json())
     .then((data) => {
+        refreshToken(data);
         if (data.status === 'failed' ){
             // if sales report is empty
             mysalesdiv.innerHTML=`<tr><td colspan="6" class="water-mark">${data.message}</td></tr>`;
@@ -466,6 +506,7 @@ function fetchProducts(){
     })
     .then((res) => res.json())
     .then((data) => {
+        refreshToken(data);
         if (data.status === 'failed' ){
             // if sales report is empty
             productsdiv.innerHTML=`<tr><td colspan="6" class="water-mark">${data.message}</td></tr>`;
@@ -515,6 +556,29 @@ function myproductDetails(name,price,id,cat,desc,qty,limit,b_price,img){
 
 
 }
+function removeToken() {
+    return localStorage.removeItem("token");
+}
+
+function logOut() {
+        removeToken();
+        window.location.replace("/index.html");
+    
+}
+function refreshToken(d){
+    if (Object.values(d).includes("Token has expired")){
+        logOut();
+    } 
+}
+function setUser(){
+    let user_name=localStorage.getItem('username');
+    let user=document.getElementById('user_name');
+    let myname=document.getElementById('my_name');
+    user.textContent='Attendant  '+ user_name;
+    myname.textContent='@'+ user_name;
+    
+}
 viewCart();
 getmySales();
 fetchProducts();
+setUser();

@@ -1319,12 +1319,16 @@ label {
 .red-alert {
     /* font-weight: bold; */
     color: red;
+    background-color: #FCDFDF;
+    padding:8px;
 }
 #register-alert,#product-alert,#product-list-msg,#cart-alert,#p_table_alert,#user_alert{
     display: none;
 }
 .green-alert{
-    color:#4CAF50;
+    color:#259814;
+    background-color: #F0FAEE;
+    padding:8px;
 }
 .water-mark{   
 color:#bbb;

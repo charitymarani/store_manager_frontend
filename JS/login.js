@@ -26,6 +26,7 @@ function loginfunc(e) {
         .then(res => {
             if (res.token) {
                 localStorage.setItem('token', res.token);
+                localStorage.setItem('username', username);
                 token=localStorage.getItem('token')
                 let myInit = {
                     'method': 'GET',
@@ -46,9 +47,11 @@ function loginfunc(e) {
                     
                     .then((data) => {
                     if (status ===401) {
-                        window.location.href = './attendant-dashboard.html'
+                        window.location.href = './attendant-dashboard.html';
+                        
                     } else {
-                        window.location.href = './admin_dashboard.html'
+                        window.location.href = './admin_dashboard.html';
+                        
                        
                     }
                 })

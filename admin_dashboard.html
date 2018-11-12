@@ -15,13 +15,13 @@
 
         <h1>Store Manager</h1>
         <div class="nav-btn">
-            <a href="login.html" class="logout">
-                <img class="logout" src="images/logout.png" />
+            <a href="#" class="logout">
+                <img onclick="logOut();" class="logout" src="images/logout.png" />
             </a>
-            <a href="profile.html" class="user_name">
-                <p class="user_name">Admin Charity</p>
+            <a href="#" class="user_name">
+                <p id="admin_user_name" class="user_name"></p>
             </a>
-            <a href="profile.html" class="avatar">
+            <a href="#" class="avatar">
                 <img class="avatar" src="images/avatar.png" />
 
             </a>
@@ -108,6 +108,7 @@
               <form class="product-search">
                   <label >Category : </label>
                   <select class="add-product-input cat-filter">
+                        <option>All</option>
                         <option>Belts</option>
                         <option>Shoes</option>
                         <option>Bags</option>
@@ -129,13 +130,12 @@
                         </div>
                      
                       <div class="add-form-content">
+                            <div id="product-alert"></div>
                             <form class="productform" id="productform">
-                                    <div id="product-alert"></div>
-                                    <label>Name</label>
+                                     <label>Name</label>
                                     <input type="text" class="add-product-input" id="add-product-name" name="productname" placeholder="Product name" required>
                                     <label>Category</label>
                                    <select class="add-product-input" id="select-product-category" placeholder="Category">
-                                      
                                        <option>Dresses</option>
                                        <option>Belts</option>
                                        <option>Shoes</option>
@@ -292,11 +292,11 @@
             <div class="the_top_div">
                 <form class="product-search">
                     <label >Attendant : </label>
-                    <select class="add-product-input filter">
-                          <option>Ruth maro</option>
-                          <option>joy</option>
-                          <option>Gabriel innocent</option>
-                          <option>jaimie</option>
+                    <select id="sales_att_filter" class="add-product-input filter">
+                        <option>all</option>
+                        <option>chacha</option>
+                        <option>chacha2</option>
+                          
                       </select>
                       <input class="add-product-input salessearchinput" type="text" placeholder="Search sales">
                       <button class="btn">Search</button>
@@ -316,7 +316,7 @@
                                        
                                     </tr>
                         </thead>
-                        <tbody id="admin-sale-rep">
+                        <tbody  id="admin-sale-rep">
                                           
                         </tbody>
                         
@@ -343,8 +343,9 @@
                                
                                 <!-- <p>Some text in the Modal..</p> -->
                                 <div class="add-form-content">
+                                        <div id="register-alert"></div>
                                       <form class="productform" id="registerform">
-                                              <div id="register-alert"></div>
+                                             
                                               <label>Username</label>
                                               <input type="text" class="add-product-input" id="add-user-name" name="username" placeholder="Enter username" required>
                                               <label>Name</label>

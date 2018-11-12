@@ -16,13 +16,13 @@
 
         <h1>Store Manager</h1>
         <div class="nav-btn">
-            <a href="login.html" class="logout">
-                <img class="logout" src="images/logout.png" />
+            <a  class="logout">
+                <img onclick="logOut();"class="logout" src="images/logout.png" />
             </a>
-            <a href="profile.html" class="user_name">
-                <p class="user_name">Attendant Charity</p>
+            <a href="#" class="user_name">
+                <p id="user_name"class="user_name"></p>
             </a>
-            <a href="profile.html" class="avatar">
+            <a href="#" class="avatar">
                 <img class="avatar" src="images/avatar.png" />
 
             </a>
@@ -92,7 +92,7 @@
                         <select class="add-product-input attendant-cat-filter">
 
                         
-
+                              <option>All</option>
                               <option>Heels</option>
                               <option>Fruits</option>
                               <option>soft drinks</option>
@@ -106,9 +106,9 @@
                                 </form>
                </div>
                <div class="add-to-cart-instructions">Click on the green cart icon to add to the cart!</div>
-                
+                    <div id="product-list-msg"></div>
                     <div id="product-list">
-                        <div id="product-list-msg"></div>    
+                            
                     </div>
            </div>
 
@@ -220,7 +220,7 @@
        
        <div id="my-user-accounts" class="attendant-dashcontent col-10">
            <div class="myprofilediv">
-            <h3>@chacha</h3>
+            <h3 id="my_name"></h3>
         <img src="images/image.jpg" class="profilepic">
         <div class="details">
             Full name : charity marani
@@ -236,7 +236,7 @@
                 
                         <div class="t_attendant_data">
                             <div class="t_data_left t_sales_data">
-                                <span id="att_svalue"class="sales_value">200</span>
+                                <span id="att_svalue"class="sales_value">0</span>
                                 <p>My sales</p>
                             </div>
                             <div class="t_data_right t_sales_image">
@@ -245,7 +245,7 @@
                         </div>
                         <div class="t_attendant_data">
                                 <div class="t_data_left t_products_data">
-                                    <span id="att_pvalue" class="products_value">300</span>
+                                    <span id="att_pvalue" class="products_value">0</span>
                                     <p>Items</p>
                                 </div>
                                 <div class="t_data_right t_product_image">
@@ -255,7 +255,7 @@
                     
                         <div class="t_attendant_data">
                             <div class="t_data_left t_income_data">
-                                <span id="att_ivalue" class="income_value">20,000</span>
+                                <span id="att_ivalue" class="income_value">0.00</span>
                                 <p>Total worth</p>
                             </div>
                             <div class="t_data_right t_income_image">

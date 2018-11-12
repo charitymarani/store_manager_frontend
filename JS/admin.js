@@ -93,20 +93,24 @@ function editProduct(pid){
             return response.json()
         })
         .then((data) => {
+            refreshToken(data);
             if (data.status =='success') {
-                
-                if(!alert(data.message)){
+                divAlert = el('register-alert');
+                form=el('registerform');
+                divAlert.style.display = "block";
+                divAlert.innerHTML =data.message;
+                divAlert.className='green-alert';
+                setTimeout(function(){
+                    divAlert.style.display = "none";
                     form.reset();
-                }
-               
-                
-                
+                }, 3000);
             }
             else {
             divAlert = el('product-alert');
             divAlert.style.display = "block";
             divAlert.innerHTML =data.message;
             divAlert.className='red-alert';
+        
 
             }
         })
@@ -127,13 +131,17 @@ function deleteProduct(pid){
         })
         .then((res) => res.json())
         .then((data) => {
+            refreshToken(data);
             if (data.status === 'success'){
                 // if request is successful
-                location.reload(true);
                 divAlert=document.getElementById('p_table_alert');
                 divAlert.style.display = "block";
                 divAlert.innerHTML =data.message;
                 divAlert.className='green-alert';
+                setTimeout(function(){
+                    divAlert.style.display = "none";
+                    location.reload(true);
+                }, 3000);
             }
             else{
                 divAlert=document.getElementById('p_table_alert');
@@ -287,20 +295,24 @@ function registerfunc(e) {
         return response.json()
       })
       .then((data) => {
+        refreshToken(data);
         if (data.status =='success') {
             divAlert = el('register-alert');
             form=el('registerform');
             divAlert.style.display = "block";
             divAlert.innerHTML =data.message;
             divAlert.className='green-alert';
-            form.reset();
+            setTimeout(function(){
+                divAlert.style.display = "none";
+                form.reset();
+            }, 3000);
+            
         }
         else {
           divAlert = el('register-alert');
           divAlert.style.display = "block";
           divAlert.innerHTML =data.message;
           divAlert.className='red-alert';
-
         }
       })
       .catch(error => console.log(error));
@@ -317,11 +329,17 @@ function editRole(username){
     })
     .then((res) => res.json())
     .then((data) => {
+        refreshToken(data);
         if (data.status === 'success'){
             // if request is successful
-            if(!alert(data.message)){
+            divAlert=document.getElementById('user_alert');
+            divAlert.style.display = "block";
+            divAlert.innerHTML =data.message;
+            divAlert.className='green-alert';
+            setTimeout(function(){
+                divAlert.style.display = "none";
                 location.reload(true);
-            }
+            }, 3000);
         }
         else{
             divAlert=document.getElementById('user_alert');
@@ -381,17 +399,24 @@ function addproductfunc(e) {
         return response.json()
       })
       .then((data) => {
+        refreshToken(data);
         if (data.status =='success') {
-            if(!alert(data.message)){
+            divAlert = el('register-alert');
+            form=el('registerform');
+            divAlert.style.display = "block";
+            divAlert.innerHTML =data.message;
+            divAlert.className='green-alert';
+            setTimeout(function(){
+                divAlert.style.display = "none";
                 form.reset();
-               
-            }
+            }, 3000);
         }
         else {
           divAlert = el('product-alert');
           divAlert.style.display = "block";
           divAlert.innerHTML =data.message;
           divAlert.className='red-alert';
+         
 
         }
       })
@@ -411,6 +436,7 @@ let salesdiv=document.getElementById('admin-sale-rep');
     })
     .then((res) => res.json())
     .then((data) => {
+        refreshToken(data);
         if (data.status === 'failed' ){
             // if sales report is empty
             salesdiv.innerHTML=`<tr><td colspan="6" class="water-mark">${data.message}</td></tr>`;
@@ -420,17 +446,23 @@ let salesdiv=document.getElementById('admin-sale-rep');
             // if request is successful
             let sales = data; // Get the results
             return sales.map(function(sale) { // Map through the results and for each run the code below
-            salesdiv.innerHTML +=`<tr class="att-sale-item attendant-report-row">
+            salesdiv.innerHTML +=`<tr class="att-sale-item att_sale_filter attendant-report-row">
             <td>${sale.sale_id}</td>
             <td>${sale.date_created}</td>
             <td>${sale.items_count}</td>
             <td>${sale.item}</td>
-            <td>${sale.created_by}</td>
+            <td class="sale-creator">${sale.created_by}</td>
             <td><div class="sale-total">${sale.price}</div></td>
         </tr>`;
+        
         incomeStats();
-    })
-}
+        
+        
+           })
+        
+        }
+        
+       
 }).catch((error) => {
     console.log(error);
 });
@@ -450,6 +482,7 @@ function getProducts(){
         })
         .then((res) => res.json())
         .then((data) => {
+            refreshToken(data);
             if (data.status === 'failed' ){
                 // if sales report is empty
                 productsdiv.innerHTML=`<tr><td colspan="6" class="water-mark">${data.message}</td></tr>`;
@@ -478,6 +511,7 @@ function getProducts(){
                 </td>
             </tr>`;
             productsCount();
+            
         })
     }
     }).catch((error) => {
@@ -496,6 +530,7 @@ function getUsers(){
     })
     .then((res) => res.json())
     .then((data) => {
+        refreshToken(data);
         if (data.status === 'failed' ){
             // if sales report is empty
             usersdiv.innerHTML=`<tr><td colspan="6" class="water-mark">${data.message}</td></tr>`;
@@ -516,16 +551,40 @@ function getUsers(){
                 <a onClick="editRole('${user.username}');" class="action_item" >change role</a>
               </td>
       </tr>`;
+      
     })
     }
     }).catch((error) => {
         console.log(error);
     });
 }
-
+function removeToken() {
+    localStorage.removeItem("token");
+}
+function logOut() {
+        removeToken();
+        window.location.replace("/index.html");
+}
+function refreshToken(d){
+    if (Object.values(d).includes("Token has expired")){
+        logOut();
+    } 
+}
+function setUsername(){
+    let user_name=localStorage.getItem('username');
+    let user=document.getElementById('admin_user_name');
+    user.textContent='Admin  '+ user_name;
+   
+    
+}
 getSales();
 getProducts();
 getUsers();
+setUsername();
+
+
+
+
 
 
 
