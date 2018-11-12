@@ -1,7 +1,23 @@
 # store_manager_frontend
 Store Manager is a web application that helps store owners manage sales and product inventory records. This application is meant for use in a single store.
 
-The UI templates are hosted on this link:https://charitymarani.github.io/store_manager_frontend/
+The site is hosted on this link:https://charitymarani.github.io/store_manager_frontend/
+Login into the system as default admin and register attendants
+
+##### Default admin login credentials:
+```
+username:defaultadmin
+password:1234admin
+
+```
+
+##### Existing attendant login credentials:
+```
+username:chacha
+password:@chachaAtt1
+
+```
+
 
 ### Required Features
 
