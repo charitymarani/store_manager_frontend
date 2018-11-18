@@ -599,11 +599,3 @@ getSales();
 getProducts();
 getUsers();
 setUsername();
-
-
-
-
-
-
-
-
