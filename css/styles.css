@@ -1168,7 +1168,7 @@ height:70px;
     border-color: #2196F3;
     outline: 0;
 }
-#add-product-description{
+#add-product-description,#edit-product-description{
     height:70px !important;
 }
 
