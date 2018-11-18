@@ -563,7 +563,7 @@ function removeToken() {
 }
 function logOut() {
         removeToken();
-        window.location.replace("/index.html");
+        window.location.replace("./index.html");
 }
 function refreshToken(d){
     if (Object.values(d).includes("Token has expired")){
