@@ -161,10 +161,53 @@
                                     <button id="addproduct-submit"class="btn btn-save">Save</button>
                                 </div>
                       </div>
+                  
                       
                     </div>
                   
                   </div>
+                  <div id="editproductform" class="addproductform">
+
+                    
+                    <div class="addproduct-content">
+                        <div class="add-product-header">
+                            <h4 class="add-product-title">Edit product</h4>
+                            <span class="close">&times;</span>
+                        </div>
+                  <div class="add-form-content">
+                    <div id="edit-product-alert"></div>
+                    <form class="productform" id="editform">
+                             <label>Name</label>
+                            <input type="text" class="add-product-input" id="edit-product-name" name="productname" placeholder="Product name" required>
+                            <label>Category</label>
+                           <select class="add-product-input" id="edit-product-category" placeholder="Category">
+                               <option>Dresses</option>
+                               <option>Belts</option>
+                               <option>Shoes</option>
+                               <option>Bags</option>
+  
+                           </select>
+                            <label>Purchase price</label>
+                            <input type="text" class="add-product-input" id="edit-purchase-price" name="purchaseprise" placeholder="Purchase price" required>
+                            <label>Price</label>
+                            <input type="text" class="add-product-input" id="edit-product-price" name="productprice" placeholder="Selling price" required>
+                            <label>Quantity</label>
+                            <input type="text" class="add-product-input" id="edit-product-quantity" name="productquantity" placeholder="Quantity" required>
+                            <label>Low inventory limit</label>
+                            <input type="text" class="add-product-input" id="edit-low-inventory" name="productinventorylimit" placeholder="Low inventory limit" required>
+                            <label>Description</label>
+                            <textarea type="text" class="add-product-input" id="edit-product-description" name="productdescription" placeholder="Add description" ></textarea>
+                            <label>Upload photo</label>
+                                      
+                                      <input type="text" class="add-product-input" id="edit-product-image" name="userphoto" placeholder="Insert image link">
+                        </form>
+                        <div>
+                            <button id="editproduct-cancel"class="btn btn-cancel">close</button>
+                            <button id="editproduct-submit"class="btn btn-save">Save</button>
+                        </div>
+              </div>
+              </div>
+              </div>
 
                   <div id="view-product-details">
                     <div class="addproduct-content">

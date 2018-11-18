@@ -562,7 +562,7 @@ function removeToken() {
 
 function logOut() {
         removeToken();
-        window.location.replace("/index.html");
+        window.location.replace("/store_manager_frontend/index.html");
     
 }
 function refreshToken(d){

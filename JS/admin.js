@@ -45,30 +45,38 @@ function viewproductDetails(name,price,id,cat,desc,qty,limit,b_price,img){
 
 }
 //Edit product
-function editProduct(pid){
-    let addproductform=document.getElementById('addproductform');
-    addproductform.style.display = "block";
-    let product_save=el('addproduct-submit');
-    let product_cancel=el('addproduct-cancel');
-    product_save.addEventListener('click',addproductfunc);
-    product_cancel.addEventListener('click',productcancelfunc);
+function editProduct(pid,name,cat,b_price,s_price,qty,limit,desc,pic){
+    let editproductform=document.getElementById('editproductform');
+    editproductform.style.display = "block";
+    el('edit-product-name').value=name;
+    el('edit-product-category').value=cat;
+    el('edit-purchase-price').value=b_price;
+    el('edit-product-price').value=s_price;
+    el('edit-product-quantity').value=qty;
+    el('edit-low-inventory').value=limit;
+    el('edit-product-description').value=desc;
+    el('edit-product-image').value=pic;
+    let product_save=el('editproduct-submit');
+    let product_cancel=el('editproduct-cancel');
+    product_save.addEventListener('click',editproductfunc);
+    product_cancel.addEventListener('click',editcancelfunc);
 
-    function productcancelfunc(e) {
+    function editcancelfunc(e) {
         e.preventDefault();
-        productform.style.display = "none";
+        editproductform.style.display = "none";
     }
 
-    function addproductfunc(e) {
+    function editproductfunc(e) {
         e.preventDefault();
         let producturl=`https://store-manager-herokuapp.herokuapp.com/api/v2/products/${pid}`;
-        let name = getEl('add-product-name');
-        let category = getEl('select-product-category');
-        let b_price = getEl('add-purchase-price');
-        let s_price = getEl('add-product-price');
-        let qty=getEl('add-product-quantity')
-        let limit= getEl('add-low-inventory');
-        let pic=getEl('add-product-image');
-        let desc=getEl('add-product-description')
+        let name = getEl('edit-product-name');
+        let category = getEl('edit-product-category');
+        let b_price = getEl('edit-purchase-price');
+        let s_price = getEl('edit-product-price');
+        let qty=getEl('edit-product-quantity')
+        let limit= getEl('edit-low-inventory');
+        let pic=getEl('edit-product-image');
+        let desc=getEl('edit-product-description')
         let token=localStorage.getItem('token');
         let myData = {
         name: name, 
@@ -95,18 +103,18 @@ function editProduct(pid){
         .then((data) => {
             refreshToken(data);
             if (data.status =='success') {
-                divAlert = el('register-alert');
-                form=el('registerform');
+                divAlert = el('edit-product-alert');
+                form=el('editform');
                 divAlert.style.display = "block";
                 divAlert.innerHTML =data.message;
                 divAlert.className='green-alert';
                 setTimeout(function(){
                     divAlert.style.display = "none";
-                    form.reset();
+                    location.reload(true);
                 }, 3000);
             }
             else {
-            divAlert = el('product-alert');
+            divAlert = el('edit-product-alert');
             divAlert.style.display = "block";
             divAlert.innerHTML =data.message;
             divAlert.className='red-alert';
@@ -117,6 +125,8 @@ function editProduct(pid){
         .catch(error => console.log(error));
     }
 }
+
+
 //Delete a product
 function deleteProduct(pid){
     let res = confirm("Are you sure you want to delete this product?");
@@ -182,24 +192,25 @@ document.getElementById("default_dash_content").click();
 
 //Open pop up form
 
-var addproductform = document.getElementById('addproductform');
-
-var addcategoryform = document.getElementById('addcategoryform');
-var adduserform = document.getElementById('adduserform');
-var view_details = document.getElementById('view-product-details');
+let addproductform = document.getElementById('addproductform');
+let editproductform = document.getElementById('editproductform');
+let addcategoryform = document.getElementById('addcategoryform');
+let adduserform = document.getElementById('adduserform');
+let view_details = document.getElementById('view-product-details');
 
 // Get the button that opens the modal
-var add_product_btn = document.getElementById("add-product-btn");
-var add_category_btn= document.getElementById("add-category-btn");
-var add_user_btn= document.getElementById("add-user-btn");
+let add_product_btn = document.getElementById("add-product-btn");
+let add_category_btn= document.getElementById("add-category-btn");
+let add_user_btn= document.getElementById("add-user-btn");
 
 
 // Get the <span> element that closes the form
 
-var span = document.getElementsByClassName("close")[0];
-var close1=document.getElementsByClassName("close")[1];
-var close2=document.getElementsByClassName("close")[2];
-var close3=document.getElementsByClassName("close")[3];
+let span = document.getElementsByClassName("close")[0];
+let span2=document.getElementsByClassName("close")[1];
+let close1=document.getElementsByClassName("close")[2];
+let close2=document.getElementsByClassName("close")[3];
+let close3=document.getElementsByClassName("close")[4];
 
 
 // When the user clicks the button, open the modal 
@@ -219,6 +230,10 @@ span.onclick = function() {
     addproductform.style.display = "none";
 
 }
+span2.onclick = function() {
+    editproductform.style.display = "none";
+
+}
 close2.onclick= function() {
     addcategoryform.style.display = "none";
 }
@@ -236,6 +251,9 @@ close1.onclick= function() {
 window.onclick = function(event) {
     if (event.target == addproductform) {
         addproductform.style.display = "none";
+    }
+    if (event.target == editproductform) {
+        editproductform.style.display = "none";
     }
     if (event.target == addcategoryform) {
         addcategoryform.style.display = "none";
@@ -401,7 +419,7 @@ function addproductfunc(e) {
       .then((data) => {
         refreshToken(data);
         if (data.status =='success') {
-            divAlert = el('register-alert');
+            divAlert = el('product-alert');
             form=el('registerform');
             divAlert.style.display = "block";
             divAlert.innerHTML =data.message;
@@ -501,7 +519,7 @@ function getProducts(){
                 <td>
                     <div class="action_div">
                         <a onClick="deleteProduct(${product.product_code});"class="action_item">delete</a>
-                        <a onClick="editProduct(${product.product_code});" class="action_item">edit</a>
+                        <a onClick="editProduct(${product.product_code},'${product.name}','${product.category}',${product.purchase_price},${product.selling_price},${product.quantity},${product.low_limit},'${product.description}','${product.pic}');" class="action_item">edit</a>
 
                         <a onClick="viewproductDetails('${product.name}',${product.selling_price},${product.product_code},'${product.category}','${product.description}',${product.quantity},${product.low_limit},${product.purchase_price},'${product.pic}');"class="view_product_btn action_item">view</a>
 
@@ -563,7 +581,7 @@ function removeToken() {
 }
 function logOut() {
         removeToken();
-        window.location.replace("/index.html");
+        window.location.replace("/store_manager_frontend/index.html");
 }
 function refreshToken(d){
     if (Object.values(d).includes("Token has expired")){
